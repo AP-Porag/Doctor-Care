@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="{{asset('frontend/images/fevicon.ico.png')}}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{asset('frontend/images/fevicon.ico.png')}}" type="image/x-icon"/>
     <link rel="apple-touch-icon" href="{{asset('frontend/images/apple-touch-icon.png')}}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
@@ -40,7 +40,7 @@
 <header>
     <div class="header-top wow fadeIn">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="{{asset('frontend/images/logo.png')}}" alt="image"></a>
+            <a class="navbar-brand" href="{{route('website')}}"><img src="{{asset('frontend/images/logo.png')}}" alt="image"></a>
             <div class="right-header">
                 <div class="header-info">
                     <div class="info-inner">
@@ -49,11 +49,24 @@
                     </div>
                     <div class="info-inner">
                         <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                        <span class="iconcont"><a data-scroll href="mailto:info@yoursite.com">info@Lifecare.com</a></span>
+                        <span class="iconcont"><a data-scroll
+                                                  href="mailto:info@yoursite.com">info@Doctor-Care.com</a></span>
                     </div>
                     <div class="info-inner">
                         <span class="icontop"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
                         <span class="iconcont"><a data-scroll href="#">Daily: 7:00am - 8:00pm</a></span>
+                    </div>
+                    <div class="info-inner">
+                        @guest
+                            <a href="{{route('login')}}" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1"
+                               style="margin-right: 5px;">Log in</a>
+                            <a href="{{route('register')}}" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1"
+                               style="margin-right: 10px; margin-left: 5px;">Sign Up</a>
+                        @endguest
+                        @auth
+                            <a href="#services" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1">My
+                                Account</a>
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -63,12 +76,14 @@
         <div class="container">
             <nav class="main-menu">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar"><i class="fa fa-bars" aria-hidden="true"></i>
+                    </button>
                 </div>
 
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a class="active" href="index.html">Home</a></li>
+                        <li><a class="active" href="">Home</a></li>
                         <li><a data-scroll href="#about">About us</a></li>
                         <li><a data-scroll href="#service">Services</a></li>
                         <li><a data-scroll href="#doctors">Doctors</a></li>
@@ -81,7 +96,7 @@
             <div class="serch-bar">
                 <div id="custom-search-input">
                     <div class="input-group col-md-12">
-                        <input type="text" class="form-control input-lg" placeholder="Search" />
+                        <input type="text" class="form-control input-lg" placeholder="Search"/>
                         <span class="input-group-btn">
                         <button class="btn btn-info btn-lg" type="button">
                         <i class="fa fa-search" aria-hidden="true"></i>
@@ -93,14 +108,17 @@
         </div>
     </div>
 </header>
-<div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4" style="background-image:url('{{asset('frontend/images/slider-bg.png')}}');">
+<div id="home" class="parallax first-section wow fadeIn" data-stellar-background-ratio="0.4"
+     style="background-image:url('{{asset('frontend/images/slider-bg.png')}}');">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="text-contant">
                     <h2>
-                        <span class="center"><span class="icon"><img src="{{asset('frontend/images/icon-logo.png')}}" alt="#" /></span></span>
-                        <a href="" class="typewrite" data-period="2000" data-type='[ "Welcome to Life Care", "We Care Your Health", "We are Expert!" ]'>
+                        <span class="center"><span class="icon"><img src="{{asset('frontend/images/icon-logo.png')}}"
+                                                                     alt="#"/></span></span>
+                        <a href="" class="typewrite" data-period="2000"
+                           data-type='[ "Welcome to Life Care", "We Care Your Health", "We are Expert!" ]'>
                             <span class="wrap"></span>
                         </a>
                     </h2>
@@ -119,7 +137,8 @@
                 <div class="service-time one" style="background:#2895f1;">
                     <span class="info-icon"><i class="fa fa-ambulance" aria-hidden="true"></i></span>
                     <h3>Emergency Case</h3>
-                    <p>Dignissimos ducimus qui blanditii sentium volta tum deleniti atque cori as quos dolores et quas mole.</p>
+                    <p>Dignissimos ducimus qui blanditii sentium volta tum deleniti atque cori as quos dolores et quas
+                        mole.</p>
                 </div>
             </div>
         </div>
@@ -143,7 +162,8 @@
                 <div class="service-time three" style="background:#0060b1;">
                     <span class="info-icon"><i class="fa fa-hospital-o" aria-hidden="true"></i></span>
                     <h3>Clinic Timetable</h3>
-                    <p>Dignissimos ducimus qui blanditii sentium volta tum deleniti atque cori as quos dolores et quas mole.</p>
+                    <p>Dignissimos ducimus qui blanditii sentium volta tum deleniti atque cori as quos dolores et quas
+                        mole.</p>
                 </div>
             </div>
         </div>
@@ -161,9 +181,13 @@
                 <div class="message-box">
                     <h4>What We Do</h4>
                     <h2>Clinic Service</h2>
-                    <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>
-                    <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.  </p>
-                    <a href="#services" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1">Learn More</a>
+                    <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non
+                        aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>
+                    <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus
+                        bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis
+                        parturient montes, nascetur ridiculus mus. </p>
+                    <a href="#services" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1">Learn
+                        More</a>
                 </div>
                 <!-- end messagebox -->
             </div>
@@ -171,7 +195,8 @@
             <div class="col-md-6">
                 <div class="post-media wow fadeIn">
                     <img src="{{asset('frontend/images/about_03.jpg')}}" alt="" class="img-responsive">
-                    <a href="http://www.youtube.com/watch?v=nrJtHemSPW4" data-rel="prettyPhoto[gal]" class="playbutton"><i class="flaticon-play-button"></i></a>
+                    <a href="http://www.youtube.com/watch?v=nrJtHemSPW4" data-rel="prettyPhoto[gal]" class="playbutton"><i
+                            class="flaticon-play-button"></i></a>
                 </div>
                 <!-- end media -->
             </div>
@@ -183,7 +208,8 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="service-widget">
                     <div class="post-media wow fadeIn">
-                        <a href="{{asset('frontend/images/clinic_01.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                        <a href="{{asset('frontend/images/clinic_01.jpg')}}" data-rel="prettyPhoto[gal]"
+                           class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
                         <img src="{{asset('frontend/images/clinic_01.jpg')}}" alt="" class="img-responsive">
                     </div>
                     <h3>Digital Control Center</h3>
@@ -193,7 +219,8 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="service-widget">
                     <div class="post-media wow fadeIn">
-                        <a href="{{asset('frontend/images/clinic_02.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                        <a href="{{asset('frontend/images/clinic_02.jpg')}}" data-rel="prettyPhoto[gal]"
+                           class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
                         <img src="{{asset('frontend/images/clinic_02.jpg')}}" alt="" class="img-responsive">
                     </div>
                     <h3>Hygienic Operating Room</h3>
@@ -203,7 +230,8 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="service-widget">
                     <div class="post-media wow fadeIn">
-                        <a href="{{asset('frontend/images/clinic_03.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                        <a href="{{asset('frontend/images/clinic_03.jpg')}}" data-rel="prettyPhoto[gal]"
+                           class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
                         <img src="{{asset('frontend/images/clinic_03.jpg')}}" alt="" class="img-responsive">
                     </div>
                     <h3>Specialist Physicians</h3>
@@ -213,7 +241,8 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="service-widget">
                     <div class="post-media wow fadeIn">
-                        <a href="{{asset('frontend/images/clinic_01.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                        <a href="{{asset('frontend/images/clinic_01.jpg')}}" data-rel="prettyPhoto[gal]"
+                           class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
                         <img src="{{asset('frontend/images/clinic_01.jpg')}}" alt="" class="img-responsive">
                     </div>
                     <h3>Digital Control Center</h3>
@@ -232,42 +261,48 @@
                 <div class="inner-services">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <div class="serv">
-                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon1.png')}}" alt="#" /></span>
+                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon1.png')}}"
+                                                            alt="#"/></span>
                             <h4>PREMIUM FACILITIES</h4>
                             <p>Lorem Ipsum is simply dummy text of the printing.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <div class="serv">
-                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon2.png')}}" alt="#" /></span>
+                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon2.png')}}"
+                                                            alt="#"/></span>
                             <h4>LARGE LABORATORY</h4>
                             <p>Lorem Ipsum is simply dummy text of the printing.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <div class="serv">
-                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon3.png')}}" alt="#" /></span>
+                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon3.png')}}"
+                                                            alt="#"/></span>
                             <h4>DETAILED SPECIALIST</h4>
                             <p>Lorem Ipsum is simply dummy text of the printing.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <div class="serv">
-                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon4.png')}}" alt="#" /></span>
+                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon4.png')}}"
+                                                            alt="#"/></span>
                             <h4>CHILDREN CARE CENTER</h4>
                             <p>Lorem Ipsum is simply dummy text of the printing.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <div class="serv">
-                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon5.png')}}" alt="#" /></span>
+                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon5.png')}}"
+                                                            alt="#"/></span>
                             <h4>FINE INFRASTRUCTURE</h4>
                             <p>Lorem Ipsum is simply dummy text of the printing.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <div class="serv">
-                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon6.png')}}" alt="#" /></span>
+                            <span class="icon-service"><img src="{{asset('frontend/images/service-icon6.png')}}"
+                                                            alt="#"/></span>
                             <h4>ANYTIME BLOOD BANK</h4>
                             <p>Lorem Ipsum is simply dummy text of the printing.</p>
                         </div>
@@ -278,19 +313,19 @@
                 <div class="appointment-form">
                     <h3><span>+</span> Book Appointment</h3>
                     <div class="form">
-                        <form action="index.html">
+                        <form action="{{route('website')}}">
                             <fieldset>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="form-group">
-                                            <input type="text" id="name" placeholder="Your Name"  />
+                                            <input type="text" id="name" placeholder="Your Name"/>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="form-group">
-                                            <input type="email" placeholder="Email Address" id="email" />
+                                            <input type="email" placeholder="Email Address" id="email"/>
                                         </div>
                                     </div>
                                 </div>
@@ -326,14 +361,17 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="form-group">
-                                            <textarea rows="4" id="textarea_message" class="form-control" placeholder="Your Message..."></textarea>
+                                            <textarea rows="4" id="textarea_message" class="form-control"
+                                                      placeholder="Your Message..."></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="form-group">
-                                            <div class="center"><button type="submit">Submit</button></div>
+                                            <div class="center">
+                                                <button type="submit">Submit</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -349,7 +387,8 @@
 
 <!-- doctor -->
 
-<div id="doctors" class="parallax section db" data-stellar-background-ratio="0.4" style="background:#fff;" data-scroll-id="doctors" tabindex="-1">
+<div id="doctors" class="parallax section db" data-stellar-background-ratio="0.4" style="background:#fff;"
+     data-scroll-id="doctors" tabindex="-1">
     <div class="container">
 
         <div class="heading">
@@ -358,7 +397,8 @@
         </div>
 
         <div class="row dev-list text-center">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeIn;">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s"
+                 style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeIn;">
                 <div class="widget clearfix">
                     <img src="{{asset('frontend/images/doctor_01.jpg')}}" alt="" class="img-responsive img-rounded">
                     <div class="widget-title">
@@ -377,7 +417,8 @@
                 </div><!--widget -->
             </div><!-- end col -->
 
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s; animation-name: fadeIn;">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s"
+                 style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s; animation-name: fadeIn;">
                 <div class="widget clearfix">
                     <img src="{{asset('frontend/images/doctor_02.jpg')}}" alt="" class="img-responsive img-rounded">
                     <div class="widget-title">
@@ -419,7 +460,8 @@
     </div><!-- end container -->
 </div>
 
-<div id="price" class="section pr wow fadeIn" style="background-image:url('{{asset('frontend/images/price-bg.png')}}');">
+<div id="price" class="section pr wow fadeIn"
+     style="background-image:url('{{asset('frontend/images/price-bg.png')}}');">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -440,7 +482,8 @@
                                         <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
                                     </div>
                                     <div class="pricing-table-sign-up">
-                                        <a href="#contact" data-scroll="" class="btn btn-dark btn-radius btn-brd">Order Now</a>
+                                        <a href="#contact" data-scroll="" class="btn btn-dark btn-radius btn-brd">Order
+                                            Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -462,7 +505,8 @@
                                         <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
                                     </div>
                                     <div class="pricing-table-sign-up">
-                                        <a href="#contact" data-scroll="" class="btn btn-light btn-radius btn-brd grd1 effect-1">Order Now</a>
+                                        <a href="#contact" data-scroll=""
+                                           class="btn btn-light btn-radius btn-brd grd1 effect-1">Order Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -480,7 +524,8 @@
                                         <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
                                     </div>
                                     <div class="pricing-table-sign-up">
-                                        <a href="#contact" data-scroll="" class="btn btn-dark btn-radius btn-brd">Order Now</a>
+                                        <a href="#contact" data-scroll="" class="btn btn-dark btn-radius btn-brd">Order
+                                            Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -505,7 +550,8 @@
                                         <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
                                     </div>
                                     <div class="pricing-table-sign-up">
-                                        <a href="#contact" data-scroll="" class="btn btn-dark btn-radius btn-brd">Order Now</a>
+                                        <a href="#contact" data-scroll="" class="btn btn-dark btn-radius btn-brd">Order
+                                            Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -527,7 +573,8 @@
                                         <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
                                     </div>
                                     <div class="pricing-table-sign-up">
-                                        <a href="#contact" data-scroll="" class="btn btn-light btn-radius btn-brd grd1 effect-1">Order Now</a>
+                                        <a href="#contact" data-scroll=""
+                                           class="btn btn-light btn-radius btn-brd grd1 effect-1">Order Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -557,7 +604,8 @@
                 <div class="testimonial clearfix">
                     <div class="desc">
                         <h3><i class="fa fa-quote-left"></i> The amazing clinic! Wonderful Support!</h3>
-                        <p class="lead">They have got my project on time with the competition with a sed highly skilled, and experienced & professional team.</p>
+                        <p class="lead">They have got my project on time with the competition with a sed highly skilled,
+                            and experienced & professional team.</p>
                     </div>
                     <div class="testi-meta">
                         <img src="{{asset('frontend/images/testi_01.png')}}" alt="" class="img-responsive alignleft">
@@ -572,7 +620,8 @@
                 <div class="testimonial clearfix">
                     <div class="desc">
                         <h3><i class="fa fa-quote-left"></i> Thanks for Help us!</h3>
-                        <p class="lead">They have got my project on time with the competition with a sed highly skilled, and experienced & professional team.</p>
+                        <p class="lead">They have got my project on time with the competition with a sed highly skilled,
+                            and experienced & professional team.</p>
                     </div>
                     <div class="testi-meta">
                         <img src="{{asset('frontend/images/testi_02.png')}}" alt="" class="img-responsive alignleft">
@@ -591,7 +640,8 @@
                 <div class="testimonial clearfix">
                     <div class="desc">
                         <h3><i class="fa fa-quote-left"></i> The amazing clinic! Wonderful Support!</h3>
-                        <p class="lead">They have got my project on time with the competition with a sed highly skilled, and experienced & professional team.</p>
+                        <p class="lead">They have got my project on time with the competition with a sed highly skilled,
+                            and experienced & professional team.</p>
                     </div>
                     <div class="testi-meta">
                         <img src="{{asset('frontend/images/testi_03.png')}}" alt="" class="img-responsive alignleft">
@@ -606,7 +656,8 @@
                 <div class="testimonial clearfix">
                     <div class="desc">
                         <h3><i class="fa fa-quote-left"></i> Thanks for Help us!</h3>
-                        <p class="lead">They have got my project on time with the competition with a sed highly skilled, and experienced & professional team.</p>
+                        <p class="lead">They have got my project on time with the competition with a sed highly skilled,
+                            and experienced & professional team.</p>
                     </div>
                     <div class="testi-meta">
                         <img src="{{asset('frontend/images/testi_01.png')}}" alt="" class="img-responsive alignleft">
@@ -651,15 +702,18 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group in_email">
-                            <input type="text" class="form-control" id="subject" placeholder="Subject" required="required">
+                            <input type="text" class="form-control" id="subject" placeholder="Subject"
+                                   required="required">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group in_message">
-                            <textarea class="form-control" id="message" rows="5" placeholder="Message" required="required"></textarea>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Message"
+                                      required="required"></textarea>
                         </div>
                         <div class="actions">
-                            <input type="submit" value="Send Message" name="submit" id="submitButton" class="btn small" title="Submit Your Message!">
+                            <input type="submit" value="Send Message" name="submit" id="submitButton" class="btn small"
+                                   title="Submit Your Message!">
                         </div>
                     </div>
                 </div>
@@ -674,13 +728,15 @@
             <div class="col-md-4">
                 <div class="logo padding">
                     <a href=""><img src="{{asset('frontend/images/logo.png')}}" alt=""></a>
-                    <p>Locavore pork belly scen ester pine est chill wave microdosing pop uple itarian cliche artisan.</p>
+                    <p>Locavore pork belly scen ester pine est chill wave microdosing pop uple itarian cliche
+                        artisan.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="footer-info padding">
                     <h3>CONTACT US</h3>
-                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> PO Box 16122 Collins Street West Victoria 8007 Australia</p>
+                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> PO Box 16122 Collins Street West Victoria
+                        8007 Australia</p>
                     <p><i class="fa fa-paper-plane" aria-hidden="true"></i> info@gmail.com</p>
                     <p><i class="fa fa-phone" aria-hidden="true"></i> (+1) 800 123 456</p>
                 </div>
@@ -692,7 +748,8 @@
                     <div class="subcriber-box">
                         <form id="mc-form" class="mc-form">
                             <div class="newsletter-form">
-                                <input type="email" autocomplete="off" id="mc-email" placeholder="Email address" class="form-control" name="EMAIL">
+                                <input type="email" autocomplete="off" id="mc-email" placeholder="Email address"
+                                       class="form-control" name="EMAIL">
                                 <button class="mc-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
                                 <div class="clearfix"></div>
                                 <!-- mailchimp-alerts Start -->
@@ -718,7 +775,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="footer-text">
-                    <p>© 2018 Lifecare. All Rights Reserved.</p>
+                    <p>© 2018 Doctor-Care. All Rights Reserved.</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -743,6 +800,7 @@
 <!-- all plugins -->
 <script src="{{asset('frontend/js/custom.js')}}"></script>
 <!-- map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUPWkb4Cjd7Wxo-T4uoUldFjoiUA1fJc&callback=myMap"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUPWkb4Cjd7Wxo-T4uoUldFjoiUA1fJc&callback=myMap"></script>
 </body>
 </html>
