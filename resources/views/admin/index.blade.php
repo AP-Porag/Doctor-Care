@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-
+    Dashboard
 @endsection
 
 @section('before-path')
