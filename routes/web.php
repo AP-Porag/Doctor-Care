@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Route;
 
 //front end rute start
 Route::get('/', function () {
-    return view('layouts.website');
+    return view('frontend.index');
 })->name('website');
 
+Route::get('/web_login',function (){
+    return view('frontend.login');
+})->name('web_login');
 
 Auth::routes();
 
