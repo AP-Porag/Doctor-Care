@@ -12,10 +12,6 @@ Route::get('/', function () {
     return view('frontend.index');
 })->name('website');
 
-Route::get('/web_login',function (){
-    return view('frontend.login');
-})->name('web_login');
-
 Auth::routes();
 
 //backend route start
