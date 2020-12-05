@@ -64,7 +64,7 @@
                                style="margin-right: 10px; margin-left: 5px;">Sign Up</a>
                         @endguest
                         @auth
-                            <a href="#services" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1">My
+                            <a href="{{ route('home') }}" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1">My
                                 Account</a>
                         @endauth
                     </div>
