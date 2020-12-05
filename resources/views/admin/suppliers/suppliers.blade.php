@@ -63,7 +63,7 @@
                                 <tr role="row">
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending">#-Sl
+                                        aria-label="Name: activate to sort column descending">Sl
                                     </th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                         colspan="1" aria-sort="ascending"
@@ -84,34 +84,24 @@
                                     </th>
                                 </tr>
                                 </thead>
-                                <tfoot>
-                                <tr>
-                                    <th class="text-center" rowspan="1" colspan="1">#-Sl</th>
-                                    <th class="text-center" rowspan="1" colspan="1">Name</th>
-                                    <th class="text-center" rowspan="1" colspan="1">Representative Name</th>
-                                    <th class="text-center" rowspan="1" colspan="1">Phone</th>
-                                    <th class="text-center" rowspan="1" colspan="1">Logo</th>
-                                    <th class="text-center" rowspan="1" colspan="1">Action</th>
-                                </tr>
-                                </tfoot>
                                 <tbody>
 
-                                @foreach($suppliers as $supplier)
+                                @foreach($suppliers as $key=>$supplier)
                                 <tr role="row" class="odd">
-                                    <td class="sorting_1 text-center">{{$supplier->id}}</td>
+                                    <td class="sorting_1 text-center">{{$suppliers->firstItem() + $key}}</td>
                                     <td class="sorting_1">{{$supplier->name}}</td>
                                     <td>{{$supplier->sr_name}}</td>
                                     <td>{{$supplier->phone}}</td>
                                     <td class="text-center d-flex justify-content-center">
                                         <div class="text-center" style="max-width: 50px;">
-                                            <img src="{{$supplier->logo}}" alt="{{$supplier->name}}" class="img-circle img-fluid">
+                                            <img src="{{($supplier->logo)}}" alt="{{$supplier->name}}" class="img-circle img-fluid">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="btn-group d-flex justify-content-center">
                                             <a href="{{route('supplier.show',$supplier->id)}}" class="btn btn-sm btn-outline-info mr-3"><i class="fa fa-eye"></i></a>
                                             <a href="{{route('supplier.edit',$supplier->id)}}" class="btn btn-sm btn-outline-warning mr-3"><i class="fa fa-edit"></i></a>
-                                            <a href="{{route('supplier.destroy',$supplier->id)}}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                            <a href="{{route('supplier_soft_delete',$supplier->id)}}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
