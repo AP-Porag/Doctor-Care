@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Suppliers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Intervention\Image;
+use Image;
 
 
 class SupplierController extends Controller
@@ -18,8 +18,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Suppliers::orderBy('created_at','DESC')->paginate(5);
-        return response()->view('admin.suppliers.suppliers',compact('suppliers'));
+        $suppliers = Suppliers::orderBy('created_at', 'DESC')->paginate(5);
+        return response()->view('admin.suppliers.suppliers', compact('suppliers'));
     }
 
     /**
@@ -40,9 +40,9 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name'=>'required|unique:suppliers,name|min:3',
-            'phone'=>'required|unique:suppliers,phone|min:10'
+        $this->validate($request, [
+            'name' => 'required|unique:suppliers,name|min:3',
+            'phone' => 'required|unique:suppliers,phone|min:10'
         ]);
         $supplier = Suppliers::create([
             'name' => $request->name,
@@ -73,7 +73,7 @@ class SupplierController extends Controller
      */
     public function edit(Suppliers $supplier)
     {
-        return response()->view('admin.suppliers.suppliers-edit',compact('supplier'));
+        return response()->view('admin.suppliers.suppliers-edit', compact('supplier'));
     }
 
     /**
@@ -83,39 +83,43 @@ class SupplierController extends Controller
      * @param  \App\Models\Suppliers  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Suppliers $supplier)
+    public function update(Request $request, Suppliers $supplier)
     {
         //validation
 
-        $this->validate($request,[
-            'name'=>'required|min:3',
-            'phone'=>'required|min:10',
-            'sr_name'=>'required|min:3'
+        $this->validate($request, [
+            'name' => 'required|min:3',
+            'phone' => 'required|min:10',
+            'sr_name' => 'required|min:3'
         ]);
 
         //updating information
 
-        $supplier -> name = $request->name;
-        $supplier -> slug = str::slug($request->name,'-');
-        $supplier -> sr_name = $request->sr_name;
-        $supplier -> phone = $request->phone;
-        $supplier -> save();
+        $supplier->name = $request->name;
+        $supplier->slug = str::slug($request->name, '-');
+        $supplier->sr_name = $request->sr_name;
+        $supplier->phone = $request->phone;
+        $supplier->save();
 
         //updating logo
         if ($request->has('logo')) {
 
             $image = $request->logo;
-            $image_new_name = time().'.'.$image->getClientOriginalExtension();
+            $image_new_name = time() . '.' . $image->getClientOriginalExtension();
 
-            $supplier->logo = Image::make('public/foo.jpg')
+            Image::make($request->logo)
                 ->resize(300, 200)
-                ->save('/storage/logos/'.$image_new_name);
+                ->save(base_path('public/storage/logos/' . $image_new_name));
+            $supplier->logo = '/storage/logos/' . $image_new_name;
+            $supplier->save();
+
+
             //Image::make($image)->save('/storage/logos/'.$image_new_name);
 
 
-//            $image->move('storage/item/logos/',$image_new_name);
-//            $supplier->thumbnail = '/storage/logos/'.$image_new_name;
-//            $supplier->save();
+            //            $image->move('storage/item/logos/',$image_new_name);
+            //            $supplier->thumbnail = '/storage/logos/'.$image_new_name;
+            //            $supplier->save();
 
             //$supplier->logo = '/storage/logos/nologo.png';
             //$supplier->save();
@@ -131,6 +135,10 @@ class SupplierController extends Controller
      */
     public function destroy(Suppliers $supplier)
     {
-        //
+    }
+    public function softDelete($id)
+    {
+        $supplier = Suppliers::findOrFail($id)->delete();
+        return back();
     }
 }
