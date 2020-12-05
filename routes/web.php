@@ -12,7 +12,7 @@ Route::get('/', function () {
     return view('frontend.index');
 })->name('website');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 //backend route start
 Route::get('/home', 'HomeController@index')->name('home');
