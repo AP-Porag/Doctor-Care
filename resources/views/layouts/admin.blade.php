@@ -31,19 +31,19 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i>
-            </div>
-            <div class="sidebar-brand-text mx-3">Doctor-Care</div>
-        </a>
+        <li class="sidebar-brand d-flex justify-content-between mb-4">
+            <a href="{{route('home')}}" class="sidebar-brand-icon">
+                <img src="{{asset('frontend/images/fevicon.ico.png')}}" alt="" class="img-fluid">
+            </a>
+            <div class="sidebar-brand-text mt-3"><a href="{{route('home')}}" class=""></a> Doctor-Care</div>
+        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{route('home')}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -120,6 +120,12 @@
             </div>
         </li>
 
+        <!-- Nav Item - Suppliers -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('supplier.index')}}">
+                <i class="fa fa-industry"></i>
+                <span>Suppliers</span></a>
+        </li>
         <!-- Nav Item - Charts -->
         <li class="nav-item">
             <a class="nav-link" href="charts.html">
@@ -161,6 +167,8 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
+                <!-- Topbar Search -->
+                <a href="{{route('website')}}" class="text-capitalize btn btn-sm btn-outline-primary">Website</a>
                 <!-- Topbar Search -->
                 <form
                     class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -369,9 +377,12 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    <h1 class="h3 mb-0 text-gray-800 text-capitalize">@yield('module')</h1>
+                    <div class="content">
+                        @yield('breadcumb')
+                    </div>
+{{--                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i--}}
+{{--                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>--}}
                 </div>
 
                 <div class="content">
@@ -388,7 +399,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
+                    <span>Copyright &copy; Doctor-Care  2020</span>
                 </div>
             </div>
         </footer>

@@ -16,3 +16,4 @@ Auth::routes(['verify' => true]);
 
 //backend route start
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('supplier','Admin\Supplier\SupplierController');
