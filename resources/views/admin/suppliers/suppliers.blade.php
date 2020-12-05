@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
+@section('module')
     Supplier
 @endsection
 
@@ -8,7 +8,7 @@
     Dashboard
 @endsection
 
-@section('breadcrumb-name')
+@section('title')
     Supplier-List
 @endsection
 
@@ -16,7 +16,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item text-capitalize"><a href="{{route('home')}}">Dashboard</a></li>
-            <li class="breadcrumb-item active text-capitalize" aria-current="page">@yield('breadcrumb-name')</li>
+            <li class="breadcrumb-item active text-capitalize" aria-current="page">@yield('title')</li>
         </ol>
     </nav>
 @endsection
@@ -30,8 +30,8 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">@yield('breadcrumb-name')</h6>
-            <a href="{{route('supplier.create')}}" class="btn btn-sm btn-outline-primary"><i class="fa fa-plus-circle"></i> Add new @yield('title')</a>
+            <h6 class="m-0 font-weight-bold text-primary">@yield('title')</h6>
+            <a href="{{route('supplier.create')}}" class="btn btn-sm btn-outline-primary text-capitalize"><i class="fa fa-plus-circle"></i> Add new @yield('module')</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -109,9 +109,9 @@
                                     </td>
                                     <td>
                                         <div class="btn-group d-flex justify-content-center">
-                                            <a href="{{route('supplier.show',$supplier->slug)}}" class="btn btn-sm btn-outline-info mr-3"><i class="fa fa-eye"></i></a>
-                                            <a href="{{route('supplier.edit',$supplier->slug)}}" class="btn btn-sm btn-outline-warning mr-3"><i class="fa fa-edit"></i></a>
-                                            <a href="{{route('supplier.destroy',$supplier->slug)}}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                            <a href="{{route('supplier.show',$supplier->id)}}" class="btn btn-sm btn-outline-info mr-3"><i class="fa fa-eye"></i></a>
+                                            <a href="{{route('supplier.edit',$supplier->id)}}" class="btn btn-sm btn-outline-warning mr-3"><i class="fa fa-edit"></i></a>
+                                            <a href="{{route('supplier.destroy',$supplier->id)}}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

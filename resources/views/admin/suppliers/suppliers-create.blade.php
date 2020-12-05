@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
-@section('title')
-    Create-Supplier
+@section('module')
+    Supplier
 @endsection
 
 @section('before-path')
     Supplier-List
 @endsection
 
-@section('breadcrumb-name')
+@section('title')
     Add new Supplier
 @endsection
 
@@ -17,7 +17,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item text-capitalize"><a href="{{route('home')}}">Dashboard</a></li>
             <li class="breadcrumb-item text-capitalize"><a href="{{route('supplier.index')}}">@yield('before-path')</a></li>
-            <li class="breadcrumb-item active text-capitalize" aria-current="page">@yield('breadcrumb-name')</li>
+            <li class="breadcrumb-item active text-capitalize" aria-current="page">@yield('title')</li>
         </ol>
     </nav>
 @endsection
@@ -30,7 +30,7 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-end">
-            <a href="{{route('supplier.index')}}" class="btn btn-sm btn-outline-primary"><i class="fa fa-plus-circle"></i>@yield('before-path')</a>
+            <a href="{{route('supplier.index')}}" class="btn btn-sm btn-outline-primary"><i class="fa fa-list"></i>@yield('before-path')</a>
         </div>
         <div class="card-body">
             <div class="form">
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save Supplier</button>
+                    <button type="submit" class="btn btn-primary">Save @yield('module')</button>
                 </form>
             </div>
         </div>
