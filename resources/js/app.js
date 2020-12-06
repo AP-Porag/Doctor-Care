@@ -1,3 +1,4 @@
+import Vue from "vue";
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -5,8 +6,6 @@
  */
 
 require('./bootstrap');
-
-window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,4 +28,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    data: {
+        image: "http://127.0.0.1:8000/admin/img/upload-image.png"
+    },
+    methods:{
+        fileChange(e){
+            const file = e.target.files[0]
+            this.image = URL.createObjectURL(file)
+        },
+    }
 });
