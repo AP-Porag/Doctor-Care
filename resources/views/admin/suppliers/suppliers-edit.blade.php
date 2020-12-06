@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 <label for="name" class="text-capitalize">Name</label>
                                 <input type="text" name="name" class="form-control" id="name"
-                                       placeholder="Enter Supplier name" value="{{$supplier->name}}">
+                                       placeholder="Enter Supplier name" value="{{$supplier->name,old('name')}}">
                                 @error('name')
                                 <div class="alert alert-danger alert-dismissible fade show mt-1">
                                     <strong>Warning! </strong>{{$message}}
@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label for="phone" class="text-capitalize">phone</label>
                                 <input type="text" name="phone" class="form-control" id="phone"
-                                       placeholder="Enter supplier phone" value="{{$supplier->phone}}">
+                                       placeholder="Enter supplier phone" value="{{$supplier->phone,old('phone')}}">
                                 @error('phone')
                                 <div class="alert alert-danger alert-dismissible fade show mt-1">
                                     <strong>Warning! </strong>{{$message}}
@@ -74,7 +74,7 @@
                             <div class="form-group">
                                 <label for="sr_name" class="text-capitalize">Representative Name</label>
                                 <input type="text" name="sr_name" class="form-control" id="sr_name"
-                                       placeholder="Enter Supplier representative Name" value="{{$supplier->sr_name}}">
+                                       placeholder="Enter Supplier representative Name" value="{{$supplier->sr_name,old('sr_name')}}">
                                 @error('sr_name')
                                 <div class="alert alert-danger alert-dismissible fade show mt-1">
                                     <strong>Warning! </strong>{{$message}}
@@ -89,7 +89,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="img-thumbnail">
-                                            <img src="{{$supplier->logo}}" alt="{{$supplier->name}}" class="img-fluid">
+                                            <img :src="image" alt="{{$supplier->name}}" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="col-md-8 align-self-end">
@@ -97,7 +97,7 @@
                                             <div class="input-group">
                                                 <div class="custom-file">
                                                     <input type="file" name="logo" class="form-control" id="logo"
-                                                           placeholder="Enter supplier logo">
+                                                           placeholder="Enter supplier logo" @change="fileChange">
                                                     @error('logo')
                                                     <div class="alert alert-danger alert-dismissible fade show mt-1">
                                                         <strong>Warning! </strong>{{$message}}

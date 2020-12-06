@@ -49,9 +49,22 @@ class SupplierController extends Controller
             'slug' => Str::slug($request->name),
             'sr_name' => $request->sr_name,
             'phone' => $request->phone,
-            'logo' => '/storage/no-images/nologo.png',
+            'logo' => '/storage/no-image/nologo.png',
         ]);
-        return redirect()->back();
+
+        //Insert logo
+        if ($request->has('logo')) {
+
+            $image = $request->logo;
+            $image_new_name = time() . '.' . $image->getClientOriginalExtension();
+
+            Image::make($request->logo)
+                ->resize(300, 200)
+                ->save(base_path('public/storage/logos/' . $image_new_name));
+            $supplier->logo = '/storage/logos/' . $image_new_name;
+            $supplier->update();
+        }
+        return back();
     }
 
     /**
@@ -62,7 +75,7 @@ class SupplierController extends Controller
      */
     public function show(Suppliers $supplier)
     {
-        //
+        return response()->view('admin.suppliers.suppliers-show',compact('supplier'));
     }
 
     /**
@@ -112,19 +125,36 @@ class SupplierController extends Controller
                 ->save(base_path('public/storage/logos/' . $image_new_name));
             $supplier->logo = '/storage/logos/' . $image_new_name;
             $supplier->save();
-
-
-            //Image::make($image)->save('/storage/logos/'.$image_new_name);
-
-
-            //            $image->move('storage/item/logos/',$image_new_name);
-            //            $supplier->thumbnail = '/storage/logos/'.$image_new_name;
-            //            $supplier->save();
-
-            //$supplier->logo = '/storage/logos/nologo.png';
-            //$supplier->save();
         }
         return redirect(route('supplier.index'));
+    }
+
+    //trashed suppliers
+    public function inactive()
+    {
+        $trashed_suppliers = Suppliers::onlyTrashed()->orderBy('created_at', 'DESC')->paginate(5);
+        return response()->view('admin.suppliers.trashed-suppliers',compact('trashed_suppliers'));
+    }
+
+    public function restore($id)
+    {
+        Suppliers::onlyTrashed()->findOrFail($id)->restore();
+        return back();
+    }
+
+    //soft delete
+    public function softDelete($id)
+    {
+        $supplier = Suppliers::findOrFail($id)->delete();
+        return back();
+    }
+
+    //hard delete
+    public function forceDelete($id)
+    {
+        Suppliers::onlyTrashed()->findOrFail($id)->forceDelete();
+
+        return back();
     }
 
     /**
@@ -133,12 +163,9 @@ class SupplierController extends Controller
      * @param  \App\Models\Suppliers  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Suppliers $supplier)
+    public function destroy(Suppliers  $supplier)
     {
+
     }
-    public function softDelete($id)
-    {
-        $supplier = Suppliers::findOrFail($id)->delete();
-        return back();
-    }
+
 }
