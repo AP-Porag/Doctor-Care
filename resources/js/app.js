@@ -28,13 +28,20 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-    data: {
-        image: "http://127.0.0.1:8000/admin/img/upload-image.png"
+    data() {
+        return{
+            image: "http://127.0.0.1:8000/admin/img/upload-image.png",
+            visible:false,
+        };
+
     },
     methods:{
         fileChange(e){
             const file = e.target.files[0]
             this.image = URL.createObjectURL(file)
         },
+        userDropdown(){
+            this.visible = !this.visible;
+        }
     }
 });
