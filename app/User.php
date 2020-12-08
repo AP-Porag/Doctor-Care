@@ -40,7 +40,7 @@ class User extends Authenticatable
     ];
     public function phones()
     {
-        return $this->hasOne(Phone::class);
+        return $this->hasMany(Phone::class);
     }
 
     public function profiles()

@@ -115,7 +115,11 @@
                     <td class="sorting_1 text-center">{{ $doctors->firstItem() + $key }}</td>
                     <td class="sorting_1">{{ $doctor->name }}</td>
                     <td>
-                        {{ $doctor->phones['phone'] }}
+                        <ul class="list-group">
+                            @foreach($doctor->phones as $phone)
+                            <li class="list-group-item">{{ $phone->contact }}</li>
+                            @endforeach
+                        </ul>
                     </td>
                     <td>
                        {{ $doctor->email }}
@@ -133,7 +137,7 @@
                 </tr>
 
                    @endforeach
-                               
+
                                 </tbody>
                             </table>
                             {{ $doctors->links() }}
@@ -146,7 +150,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-7">
-                         
+
                         </div>
                     </div>
                 </div>
