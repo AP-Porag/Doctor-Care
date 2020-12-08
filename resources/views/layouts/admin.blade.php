@@ -92,7 +92,9 @@
                 <div id="collapsePatient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('patient.index')}}">Patients List</a>
-                        <a class="collapse-item" href="#">Treatment History</a>
+                        <a class="collapse-item" href="#">Documents</a>
+                        <a class="collapse-item" href="#">Case Manager</a>
+                        <a class="collapse-item" href="#">Payment</a>
                     </div>
                 </div>
             </li>
