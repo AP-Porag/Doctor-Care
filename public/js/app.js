@@ -49755,13 +49755,19 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('example-component', __webp
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
-  data: {
-    image: "http://127.0.0.1:8000/admin/img/upload-image.png"
+  data: function data() {
+    return {
+      image: "http://127.0.0.1:8000/admin/img/upload-image.png",
+      visible: false
+    };
   },
   methods: {
     fileChange: function fileChange(e) {
       var file = e.target.files[0];
       this.image = URL.createObjectURL(file);
+    },
+    userDropdown: function userDropdown() {
+      this.visible = !this.visible;
     }
   }
 });

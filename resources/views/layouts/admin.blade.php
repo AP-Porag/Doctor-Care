@@ -20,6 +20,15 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <style>
+        .userDropdown {
+            position: absolute;
+            top: 70px;
+            z-index: 1;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+    </style>
 
 </head>
 
@@ -151,17 +160,6 @@
             </div>
 
             <!-- Sidebar Message -->
-            <div class="">
-                <a class="dropdown-item text-light" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </div>
 
         </ul>
         <!-- End of Sidebar -->
@@ -344,33 +342,32 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-                                <img class="img-profile rounded-circle"
+                            <a class="nav-link dropdown-toggle" href="#" role="button" @click="userDropdown">
+                                <span class="mr-2 d-none d-lg-inline text-primary small">{{ Auth::user()->name }}</span>
+                                <img class="img-profile rounded-circle" alt="{{Auth::user()->name}}"
                                      src="{{asset('admin/img/undraw_profile.svg')}}">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            <div class="bg-gradient-primary userDropdown dropdown-menu-right shadow animated--grow-in" v-show="visible"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <a class="dropdown-item text-light" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <a class="dropdown-item text-light" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2"></i>
                                     Settings
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                <a class="dropdown-item text-light" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2"></i>
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <div class="">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item text-light" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>Logout
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
