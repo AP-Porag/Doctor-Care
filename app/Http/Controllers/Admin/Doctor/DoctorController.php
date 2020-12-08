@@ -73,11 +73,6 @@ class DoctorController extends Controller
             'user_id' => $last_id,
             'profile_picture' => '/storage/profile_picture/no_profile.png',
         ]);
-        $address = Address::create([
-            'user_id' => $last_id,
-            'address' => $request->address,
-        ]);
-
         //Insert Profile Picture
         if ($request->hasFile('profile_picture')) {
 
@@ -88,8 +83,13 @@ class DoctorController extends Controller
                 ->resize(300, 200)
                 ->save(base_path('public/storage/profile_picture/' . $image_new_name));
             $profile_pictue->profile_picture = '/storage/profile_picture/' . $image_new_name;
-            $profile_pictue->update();
+            $profile_pictue->save();
         }
+        $address = Address::create([
+            'user_id' => $last_id,
+            'address' => $request->address,
+        ]);
+
         return back();
     }
 

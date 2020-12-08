@@ -32,8 +32,10 @@
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">@yield('title')</h6>
             <div class="d-flex justify-content-between">
-                <a href="{{route('doctor.create')}}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i class="fa fa-plus-circle"></i> Add new @yield('module')</a>
-                <a href="{{route('inactive')}}" class="btn btn-sm btn-outline-danger text-capitalize"><i class="fa fa-ban"></i> In-Active @yield('module')</a>
+                <a href="{{route('doctor.create')}}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i
+                        class="fa fa-plus-circle"></i> Add new @yield('module')</a>
+                <a href="{{route('inactive')}}" class="btn btn-sm btn-outline-danger text-capitalize"><i
+                        class="fa fa-ban"></i> In-Active @yield('module')</a>
             </div>
         </div>
         <div class="card-body">
@@ -60,27 +62,33 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <table class="table table-bordered dataTable table-striped table-hover" id="dataTable" width="100%" cellspacing="0"
+                            <table class="table table-bordered dataTable table-striped table-hover" id="dataTable"
+                                   width="100%" cellspacing="0"
                                    role="grid" aria-describedby="dataTable_info">
                                 <thead>
                                 <tr role="row">
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
+                                        rowspan="1"
                                         colspan="1" aria-sort="ascending"
                                         aria-label="Name: activate to sort column descending">Sl
                                     </th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
+                                        rowspan="1"
                                         colspan="1" aria-sort="ascending"
                                         aria-label="Name: activate to sort column descending">Name
                                     </th>
-                                    <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                        colspan="1"
                                         aria-label="Position: activate to sort column ascending">
                                         Phone
                                     </th>
-                                    <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                        colspan="1"
                                         aria-label="Office: activate to sort column ascending">
                                         Email
                                     </th>
-                                    <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
+                                    <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                        colspan="1"
                                         aria-label="Age: activate to sort column ascending">Profile
                                     </th>
                                     <th rowspan="1" colspan="1" class="text-center">Action
@@ -88,55 +96,37 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($doctors as $key => $doctor)
+                                    <tr role="row" class="odd">
+                                        <td class="sorting_1 text-center">{{ $doctors->firstItem() + $key }}</td>
+                                        <td class="sorting_1">{{ $doctor->name }}</td>
+                                        <td>
+                                            <ul class="list-group">
+                                                @foreach($doctor->phones as $phone)
+                                                    <li class="list-group-item">{{ $phone->contact }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                        <td>
+                                            {{ $doctor->email }}
+                                        </td>
+                                        <td style="width:10%;">
+                                            {{--                        <img src="{{ asset($doctor->profile->profile_picture ) }}" alt="{{ $doctor->name }}" class="img-fluid">--}}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group d-flex justify-content-center" role="group">
+                                                <a href="" class="btn btn-sm btn-outline-info mr-3"><i
+                                                        class="fa fa-eye"></i></a>
+                                                <a href="{{route('doctor.edit',$doctor->id)}}"
+                                                   class="btn btn-sm btn-outline-warning mr-3"><i
+                                                        class="fa fa-edit"></i></a>
+                                                <a href="" class="btn btn-sm btn-outline-danger"><i
+                                                        class="fa fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                                {{--  @foreach($suppliers as $key=>$supplier)
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1 text-center">{{$suppliers->firstItem() + $key}}</td>
-                                    <td class="sorting_1">{{$supplier->name}}</td>
-                                    <td>{{$supplier->sr_name}}</td>
-                                    <td>{{$supplier->phone}}</td>
-                                    <td class="text-center d-flex justify-content-center">
-                                        <div class="text-center" style="max-width: 50px;">
-                                            <img src="{{asset($supplier->logo)}}" alt="{{$supplier->name}}" class="img-circle img-fluid">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group d-flex justify-content-center">
-                                            <a href="{{route('supplier.show',$supplier->id)}}" class="btn btn-sm btn-outline-info mr-3"><i class="fa fa-eye"></i></a>
-                                            <a href="{{route('supplier.edit',$supplier->id)}}" class="btn btn-sm btn-outline-warning mr-3"><i class="fa fa-edit"></i></a>
-                                            <a href="{{route('supplier_soft_delete',$supplier->id)}}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach  --}}
-
-                   @foreach($doctors as $key => $doctor)
-                   <tr role="row" class="odd">
-                    <td class="sorting_1 text-center">{{ $doctors->firstItem() + $key }}</td>
-                    <td class="sorting_1">{{ $doctor->name }}</td>
-                    <td>
-                        <ul class="list-group">
-                            @foreach($doctor->phones as $phone)
-                            <li class="list-group-item">{{ $phone->contact }}</li>
-                            @endforeach
-                        </ul>
-                    </td>
-                    <td>
-                       {{ $doctor->email }}
-                    </td>
-                    <td style="width:10%;">
-                        <img src="{{ asset($doctor->profiles['profile_picture']) }}" alt="{{ $doctor->name }}" class="img-fluid">
-                     </td>
-                    <td>
-                        <div class="btn-group d-flex justify-content-center" role="group">
-                            <a href="" class="btn btn-sm btn-outline-info mr-3"><i class="fa fa-eye"></i></a>
-                            <a href="{{route('doctor.edit',$doctor->id)}}" class="btn btn-sm btn-outline-warning mr-3"><i class="fa fa-edit"></i></a>
-                            <a href="" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
-                        </div>
-                    </td>
-                </tr>
-
-                   @endforeach
+                                @endforeach
 
                                 </tbody>
                             </table>
