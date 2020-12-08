@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
     protected $fillable = ['user_id', 'profile_picture', 'created_at', 'updated_at'];
-    public function getUserFromProfileImage()
+
+    public function user()
     {
-        return $this->hasOne('App\User', 'id', 'user_id');
+        return $this->belongsTo(User::class);
     }
 }

@@ -30,7 +30,7 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-end">
-            <a href="{{route('supplier.index')}}" class="btn btn-sm btn-outline-primary"><i class="fa fa-list"></i>@yield('before-path')</a>
+            <a href="{{route('doctor.index')}}" class="btn btn-sm btn-outline-primary"><i class="fa fa-list"></i>@yield('before-path')</a>
         </div>
         <div class="card-body">
             <div class="form">
@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <label for="address" class="text-capitalize">Address</label>
 <textarea name="address" id="address" cols="30" class="form-control" {{ old('phone') }} rows="3">Enter Your Address Here</textarea>
-                    
+
                                 @error('address')
                                 <div class="alert alert-danger alert-dismissible fade show mt-1">
                                     <strong>Warning!  </strong>{{$message}}
