@@ -75,7 +75,7 @@
                             </div>
                         </div>
 
-                        {{-- <div class="col-md-6">
+                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone" class="text-capitalize">phone</label>
                                 <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter Phone" value="{{ old('phone') }}">
@@ -86,7 +86,7 @@
                                 </div>
                                 @enderror
                             </div>
-                        </div> --}}
+                        </div>
 
                         <div class="col-md-6">
                             <div class="form-group">
