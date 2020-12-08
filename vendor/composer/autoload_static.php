@@ -496,6 +496,7 @@ class ComposerStaticInit8945afc6df07bdc2a8c0b82781f25615
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\Doctor\\DoctorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Doctor/DoctorController.php',
         'App\\Http\\Controllers\\Admin\\Supplier\\SupplierController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Supplier/SupplierController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -515,6 +516,9 @@ class ComposerStaticInit8945afc6df07bdc2a8c0b82781f25615
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Patient' => __DIR__ . '/../..' . '/app/Models/Patient.php',
+        'App\\Models\\Address' => __DIR__ . '/../..' . '/app/Models/Address.php',
+        'App\\Models\\Phone' => __DIR__ . '/../..' . '/app/Models/Phone.php',
+        'App\\Models\\ProfileImage' => __DIR__ . '/../..' . '/app/Models/ProfileImage.php',
         'App\\Models\\Suppliers' => __DIR__ . '/../..' . '/app/Models/Suppliers.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

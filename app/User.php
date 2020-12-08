@@ -2,13 +2,15 @@
 
 namespace App;
 
+use App\Models\Phone;
+use App\Models\Profile;
+use App\Models\Address;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
-    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +38,18 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function phones()
+    {
+        return $this->hasMany(Phone::class);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function addresses()
+    {
+        return $this->hasOne(Address::class);
+    }
 }

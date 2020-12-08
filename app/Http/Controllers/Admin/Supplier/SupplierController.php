@@ -75,7 +75,7 @@ class SupplierController extends Controller
      */
     public function show(Suppliers $supplier)
     {
-        return response()->view('admin.suppliers.suppliers-show',compact('supplier'));
+        return response()->view('admin.suppliers.suppliers-show', compact('supplier'));
     }
 
     /**
@@ -133,7 +133,7 @@ class SupplierController extends Controller
     public function inactive()
     {
         $trashed_suppliers = Suppliers::onlyTrashed()->orderBy('created_at', 'DESC')->paginate(5);
-        return response()->view('admin.suppliers.trashed-suppliers',compact('trashed_suppliers'));
+        return response()->view('admin.suppliers.trashed-suppliers', compact('trashed_suppliers'));
     }
 
     public function restore($id)
@@ -165,7 +165,5 @@ class SupplierController extends Controller
      */
     public function destroy(Suppliers  $supplier)
     {
-
     }
-
 }
