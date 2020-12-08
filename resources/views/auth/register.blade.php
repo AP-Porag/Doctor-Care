@@ -122,16 +122,15 @@
               </div>
               <form class="user" method="POST" action="{{ route('register') }}">
                 @csrf
-                <div class="form-group row">
-                  <div class="col-sm-12 mb-3 mb-sm-0">
-                    <input type="text" name="name" value="{{ old('name') }}" autocomplete="name" autofocus class="form-control form-control-user @error('name') is-invalid @enderror" id="exampleFirstName" placeholder="Name">
-                  </div>
+                <div class="form-group">
+                  <input type="name" class="form-control form-control-user @error('name') is-invalid @enderror" id="exampleInputEmail" name="name" placeholder="Enter Name" value="{{ old('name') }}" autofocus autocomplete="name">
                   @error('name')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
                   @enderror
                 </div>
+                
                 <div class="form-group">
                   <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="exampleInputEmail" name="email" placeholder="Email Address" value="{{ old('email') }}" autocomplete="email">
                   @error('email')
@@ -153,6 +152,17 @@
                     <input type="password" name="password_confirmation" class="form-control form-control-user" autocomplete="new-password" id="exampleRepeatPassword" placeholder="Repeat Password">
                   </div>
                 </div>
+                <div class="form-group">
+                  <input type="phone" class="form-control form-control-user @error('phone') is-invalid @enderror" id="exampleInputEmail" name="phone" placeholder="Enter Phone" value="{{ old('phone') }}" autofocus autocomplete="name">
+                  @error('phone')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+                </div>
+
+               
+
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                   {{ __('Register Account') }}
                 </button>

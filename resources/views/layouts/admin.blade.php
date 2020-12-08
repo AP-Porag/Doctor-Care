@@ -130,9 +130,9 @@
             </li>
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                <a class="nav-link" href="{{route('doctor.index')}}">
+                    <i class="fa fa-doctor"></i>
+                    <span>Doctors</span></a>
             </li>
 
             <!-- Nav Item - Tables -->

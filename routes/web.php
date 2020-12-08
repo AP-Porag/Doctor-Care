@@ -26,4 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/supplier/restore/{id}', 'Admin\Supplier\SupplierController@restore')->name('restore');
     Route::get('/supplier/force-delete/{id}', 'Admin\Supplier\SupplierController@forceDelete')->name('forceDelete');
     Route::get('/supplier/inactive/suppliers', 'Admin\Supplier\SupplierController@inactive')->name('inactive');
+    //Supplier Ends
+
+    Route::resource('doctor', 'Admin\Doctor\DoctorController');
 });
