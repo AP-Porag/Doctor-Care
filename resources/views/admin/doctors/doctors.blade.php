@@ -101,11 +101,7 @@
                                         <td class="sorting_1 text-center">{{ $doctors->firstItem() + $key }}</td>
                                         <td class="sorting_1">{{ $doctor->name }}</td>
                                         <td>
-                                            <ul class="list-group">
-                                                @foreach($doctor->phones as $phone)
-                                                    <li class="list-group-item">{{ $phone->contact }}</li>
-                                                @endforeach
-                                            </ul>
+                                            {{ $doctor->phone }}
                                         </td>
                                         <td>
                                             {{ $doctor->email }}

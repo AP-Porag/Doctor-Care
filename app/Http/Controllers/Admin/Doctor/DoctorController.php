@@ -43,29 +43,11 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required|unique:suppliers,name|min:3',
-        //     'phone' => 'required|unique:suppliers,phone|min:10'
-        // ]);
-
-        //Insert logo
-        // if ($request->has('logo')) {
-
-        //     $image = $request->logo;
-        //     $image_new_name = time() . '.' . $image->getClientOriginalExtension();
-
-        //     Image::make($request->logo)
-        //         ->resize(300, 200)
-        //         ->save(base_path('public/storage/logos/' . $image_new_name));
-        //     $supplier->logo = '/storage/logos/' . $image_new_name;
-        //     $supplier->update();
-        // }
-        // return back();
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'email' => $request->phone,
             'password' => bcrypt($request->password),
+            'phone' => $request->phone,
 
         ]);
         $last_id = $user->id;

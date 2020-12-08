@@ -51,12 +51,12 @@
                                 @enderror
                             </div>
                         </div>
-                    
+
 
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone" class="text-capitalize">phone</label>
-                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter Phone" value="{{ $doctor->phones['phone'],old('phone') }}">
+                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter Phone" value="{{ $doctor->phone,old('phone') }}">
                                 @error('phone')
                                 <div class="alert alert-danger alert-dismissible fade show mt-1">
                                     <strong>Warning!  </strong>{{$message}}
@@ -69,8 +69,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="address" class="text-capitalize">Address</label>
-<textarea name="address" id="address" cols="30" class="form-control" rows="3">{{ $doctor->addresses['address'],old('address')}}</textarea>
-                    
+<textarea name="address" id="address" cols="30" class="form-control" rows="3">{{ $doctor->address->address,old('address')}}</textarea>
+
                                 @error('address')
                                 <div class="alert alert-danger alert-dismissible fade show mt-1">
                                     <strong>Warning!  </strong>{{$message}}

@@ -67,6 +67,42 @@
                 Interface
             </div>
 
+            <!-- Nav Item - start here Collapse Menu -->
+            <!-- Nav Item - Doctors -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDoctor"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-user-md"></i>
+                    <span>Doctor</span>
+                </a>
+                <div id="collapseDoctor" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('doctor.index')}}">Doctors List</a>
+                        <a class="collapse-item" href="#">Treatment History</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Patient -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePatient"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-wheelchair"></i>
+                    <span>Patients</span>
+                </a>
+                <div id="collapsePatient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('patient.index')}}">Patients List</a>
+                        <a class="collapse-item" href="#">Treatment History</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Suppliers -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('supplier.index')}}">
+                    <i class="fa fa-industry"></i>
+                    <span>Suppliers</span></a>
+            </li>
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -130,20 +166,6 @@
                     </div>
                 </div>
             </li>
-
-            <!-- Nav Item - Suppliers -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('supplier.index')}}">
-                    <i class="fa fa-industry"></i>
-                    <span>Suppliers</span></a>
-            </li>
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('doctor.index')}}">
-                    <i class="fa fa-doctor"></i>
-                    <span>Doctors</span></a>
-            </li>
-
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
