@@ -8,9 +8,12 @@ use App\Models\Address;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable
 {
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','phone','username'
+        'name', 'email', 'password', 'phone', 'username'
     ];
 
     /**
@@ -45,11 +48,11 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class)->withTrashed();
     }
 
     public function address()
     {
-        return $this->hasOne(Address::class);
+        return $this->hasOne(Address::class)->withTrashed();
     }
 }

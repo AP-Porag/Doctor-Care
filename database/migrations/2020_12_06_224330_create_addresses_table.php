@@ -17,6 +17,7 @@ class CreateAddressesTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->text('address');
+            $table->string('deleted_at')->nullable();
             $table->timestamps();
         });
     }

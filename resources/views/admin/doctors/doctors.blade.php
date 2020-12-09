@@ -34,7 +34,7 @@
             <div class="d-flex justify-content-between">
                 <a href="{{route('doctor.create')}}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i
                         class="fa fa-plus-circle"></i> Add new @yield('module')</a>
-                <a href="{{route('inactive')}}" class="btn btn-sm btn-outline-danger text-capitalize"><i
+                <a href="{{route('inactive_doctors')}}" class="btn btn-sm btn-outline-danger text-capitalize"><i
                         class="fa fa-ban"></i> In-Active @yield('module')</a>
             </div>
         </div>
@@ -89,6 +89,10 @@
                                     </th>
                                     <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                         colspan="1"
+                                        aria-label="Age: activate to sort column ascending">Address
+                                    </th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                        colspan="1"
                                         aria-label="Age: activate to sort column ascending">Profile
                                     </th>
                                     <th rowspan="1" colspan="1" class="text-center">Action
@@ -106,8 +110,14 @@
                                         <td>
                                             {{ $doctor->email }}
                                         </td>
-                                        <td style="width:10%;">
+                                        <td style="width:20%;">
                                             {{--                        <img src="{{ asset($doctor->profile->profile_picture ) }}" alt="{{ $doctor->name }}" class="img-fluid">--}}
+                                            {{ $doctor->address['address'] }}
+                                            
+                                        </td>
+                                        <td style="width:20%;">
+                                            <img src="{{ asset($doctor->profile['profile_picture'] ) }}" alt="{{ $doctor->name }}" class="img-fluid">
+                                           
                                         </td>
                                         <td>
                                             <div class="btn-group d-flex justify-content-center" role="group">
@@ -116,7 +126,7 @@
                                                 <a href="{{route('doctor.edit',$doctor->id)}}"
                                                    class="btn btn-sm btn-outline-warning mr-3"><i
                                                         class="fa fa-edit"></i></a>
-                                                <a href="" class="btn btn-sm btn-outline-danger"><i
+                                                <a href="{{ route('doctor_soft_delete',$doctor->id) }}" class="btn btn-sm btn-outline-danger"><i
                                                         class="fa fa-trash"></i></a>
                                             </div>
                                         </td>

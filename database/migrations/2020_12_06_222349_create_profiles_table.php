@@ -17,6 +17,7 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('profile_picture')->nullable();
+            $table->string('deleted_at')->nullable();
             $table->timestamps();
         });
     }
