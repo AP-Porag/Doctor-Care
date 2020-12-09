@@ -104,26 +104,32 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $doctor =  $request->id;
+
+
+
+        $user = User::findOrFail($id)->first();
         if ($request->has('name')) {
             $user->name = $request->name;
             $user->save();
         }
+
+
         if ($request->has('phone')) {
             $user->phone = $request->phone;
-            $doctor->save();
+            $user->save();
         }
         if ($request->has('address')) {
-            $address = Address::where('user_id', $doctor)->get();
+            $address = Address::where('user_id', $id)->first();
             $address->address = $request->address;
             $address->save();
         }
 
+
         //updating logo
         if ($request->has('profile_picture')) {
-            $profile = Profile::where('user_id', $doctor)->first();
+            $profile = Profile::where('user_id', $id)->first();
             $image = $request->profile_picture;
             $image_new_name = time() . '.' . $image->getClientOriginalExtension();
 
@@ -142,6 +148,38 @@ class DoctorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //soft delete
+    public function softDelete($id)
+    {
+        $supplier = User::findOrFail($id)->delete();
+        $profile_picture = Profile::where('user_id', $id)->delete();
+        $address = Address::where('user_id', $id)->delete();
+        return back();
+    }
+
+    //show trashed data
+    public function inactive()
+    {
+        $trashed_doctors = User::onlyTrashed()->orderBy('created_at', 'DESC')->paginate(5);
+        return response()->view('admin.doctors.trashed-doctors', compact('trashed_doctors'));
+    }
+
+    //restore soft deleted data
+    public function restore($id)
+    {
+        User::onlyTrashed()->findOrFail($id)->restore();;
+        return back();
+    }
+    //force deleted data of 
+    public function forceDelete($id)
+    {
+        User::onlyTrashed()->findOrFail($id)->forceDelete();
+        return back();
+    }
+
+
+
     public function destroy($id)
     {
         //
