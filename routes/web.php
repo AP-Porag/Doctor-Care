@@ -31,6 +31,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     //Doctor route start
     Route::resource('doctor', 'Admin\Doctor\DoctorController');
+    Route::get('/doctor/soft-delete/{id}', 'Admin\Doctor\DoctorController@softDelete')->name('doctor_soft_delete');
+    Route::get('/doctor/restore/{id}', 'Admin\Doctor\DoctorController@restore')->name('restore_doctor');
+    Route::get('/doctor/force-delete/{id}', 'Admin\Doctor\DoctorController@forceDelete')->name('forceDelete_doctor');
+    Route::get('/doctor/inactive/doctors', 'Admin\Doctor\DoctorController@inactive')->name('inactive_doctors');
 
     //Patient route start
     Route::resource('patient', 'Admin\Patient\PatientController');

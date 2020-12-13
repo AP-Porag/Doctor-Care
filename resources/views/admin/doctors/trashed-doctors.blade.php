@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('module')
-    Supplier
+    Doctor
 @endsection
 
 @section('before-path')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('title')
-    Supplier-List
+    Doctor-List
 @endsection
 
 @section('breadcumb')
@@ -28,17 +28,14 @@
 @endsection
 
 @section('content')
-
-    {{-- trashed Supplier--}}
-
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-danger">In-Active @yield('module')</h6>
             <div class="d-flex justify-content-between">
-                <a href="{{ route('supplier.create') }}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i
+                <a href="{{ route('doctor.create') }}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i
                         class="fa fa-plus-circle"></i> Add new @yield('module')</a>
-                <a href="{{ route('supplier.index') }}" class="btn btn-sm btn-outline-success text-capitalize"><i
-                        class="fa fa-handshake mr-1"></i>Active @yield('module')</a>
+                <a href="{{ route('doctor.index') }}" class="btn btn-sm btn-outline-success text-capitalize"><i
+                        class="fa fa-ban"></i> Active @yield('module')</a>
             </div>
         </div>
         <div class="card-body">
@@ -46,8 +43,8 @@
                 <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
-                            <div class="dataTables_length" id="dataTable_length"><label>Show <select>
-                                        name="dataTable_length" aria-controls="dataTable"
+                            <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length"
+                                        aria-controls="dataTable"
                                         class="custom-select custom-select-sm form-control form-control-sm">
                                         <option value="10">10</option>
                                         <option value="25">25</option>
@@ -78,40 +75,53 @@
                                         </th>
                                         <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending">
-                                            Representative Name
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Office: activate to sort column ascending">
                                             Phone
                                         </th>
                                         <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Age: activate to sort column ascending">Logo
+                                            colspan="1" aria-label="Office: activate to sort column ascending">
+                                            Email
+                                        </th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending">Address
+                                        </th>
+                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending">Profile
                                         </th>
                                         <th rowspan="1" colspan="1" class="text-center">Action
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    @foreach ($trashed_suppliers as $key => $supplier)
+                                    @foreach ($trashed_doctors as $key => $doctor)
                                         <tr role="row" class="odd">
-                                            <td class="sorting_1 text-center">{{ $trashed_suppliers->firstItem() + $key }}
+                                            <td class="sorting_1 text-center">{{ $trashed_doctors->firstItem() + $key }}
                                             </td>
-                                            <td class="sorting_1">{{ $supplier->name }}</td>
-                                            <td>{{ $supplier->sr_name }}</td>
-                                            <td>{{ $supplier->phone }}</td>
-                                            <td class="text-center d-flex justify-content-center">
-                                                <div class="text-center" style="max-width: 50px;">
-                                                    <img src="{{ asset($supplier->logo) }}" alt="{{ $supplier->name }}"
-                                                        class="img-circle img-fluid">
-                                                </div>
+                                            <td class="sorting_1">{{ $doctor->name }}</td>
+                                            <td>
+                                                {{ $doctor->phone }}
+                                            </td>
+                                            <td>
+                                                {{ $doctor->email }}
+                                            </td>
+                                            <td style="width:20%;">
+                                                {{-- <img
+                                                    src="{{ asset($doctor->profile->profile_picture) }}"
+                                                    alt="{{ $doctor->name }}"
+                                                    class="img-fluid">--}}
+                                                {{ $doctor->address['address'] }}
+
+                                            </td>
+                                            <td style="width:20%;">
+                                                <img src="{{ asset($doctor->profile['profile_picture']) }}"
+                                                    alt="{{ $doctor->name }}" class="img-fluid">
+
                                             </td>
                                             <td>
                                                 <div class="btn-group d-flex justify-content-center">
-                                                    <a href="{{ route('restore', $supplier->id) }}"
+                                                    <a href="{{ route('restore_doctor', $doctor->id) }}"
                                                         class="btn btn-sm btn-outline-success mr-3"><i
                                                             class="fab fa-creative-commons-share"></i></a>
-                                                    <a href="{{ route('forceDelete', $supplier->id) }}"
+                                                    <a href="{{ route('forceDelete_doctor', $doctor->id) }}"
                                                         class="btn btn-sm btn-outline-danger mr-3"><i
                                                             class="fas fa-window-close"></i></a>
                                                     {{-- <form
@@ -127,9 +137,12 @@
                                                 </div>
                                             </td>
                                         </tr>
+
                                     @endforeach
+
                                 </tbody>
                             </table>
+                            {{ $trashed_doctors->links() }}
                         </div>
                     </div>
                     <div class="row">
@@ -139,7 +152,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-7">
-                            {{ $trashed_suppliers->links() }}
+
                         </div>
                     </div>
                 </div>
