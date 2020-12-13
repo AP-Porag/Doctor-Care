@@ -69,7 +69,7 @@ class DoctorController extends Controller
         }
         $address = Address::create([
             'user_id' => $last_id,
-            'address' => $request->address,
+            'city' => $request->address,
         ]);
 
         return back();
@@ -101,38 +101,44 @@ class DoctorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        $doctor =  $request->id;
+        //$doctor =  $request->id;
+
         if ($request->has('name')) {
-            $user->name = $request->name;
-            $user->save();
+            $user = User::where('id', $id)->get();
+
+            $user = User::update([
+                'name'=>$request->name,
+            ]);
+//            $user->name = $request->name;
+//            $user->save();
         }
-        if ($request->has('phone')) {
-            $user->phone = $request->phone;
-            $doctor->save();
-        }
-        if ($request->has('address')) {
-            $address = Address::where('user_id', $doctor)->get();
-            $address->address = $request->address;
-            $address->save();
-        }
+//        if ($request->has('phone')) {
+//            $user->phone = $request->phone;
+//            $user->save();
+//        }
+//        if ($request->has('address')) {
+//            $address = Address::where('user_id', $doctor)->get();
+//            $address->city = $request->address;
+//            $address->update();
+//        }
 
         //updating logo
-        if ($request->has('profile_picture')) {
-            $profile = Profile::where('user_id', $doctor)->first();
-            $image = $request->profile_picture;
-            $image_new_name = time() . '.' . $image->getClientOriginalExtension();
-
-            Image::make($request->profile_picture)
-                ->resize(300, 200)
-                ->save(base_path('public/storage/profile_picture/' . $image_new_name));
-            $profile->profile_picture = '/storage/profile_picture/' . $image_new_name;
-            $profile->save();
-        }
+//        if ($request->has('profile_picture')) {
+//            $profile = Profile::where('user_id', $doctor)->first();
+//            $image = $request->profile_picture;
+//            $image_new_name = time() . '.' . $image->getClientOriginalExtension();
+//
+//            Image::make($request->profile_picture)
+//                ->resize(300, 200)
+//                ->save(base_path('public/storage/profile_picture/' . $image_new_name));
+//            $profile->profile_picture = '/storage/profile_picture/' . $image_new_name;
+//            $profile->save();
+//        }
         return redirect(route('doctor.index'));
     }
 

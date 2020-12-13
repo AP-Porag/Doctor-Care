@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $fillable = ['user_id', 'address', 'created_at', 'updated_at'];
-    public function getUserFromAddress()
+    protected $fillable = ['user_id', 'city', 'created_at', 'updated_at'];
+    public function user()
     {
-        return $this->hasOne(App\User::class);
+        return $this->belongsTo(User::class);
     }
 }
