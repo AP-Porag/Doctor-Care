@@ -69,7 +69,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="address" class="text-capitalize">Address</label>
-<textarea name="address" id="address" cols="30" class="form-control" rows="3">{{ $doctor->address->address,old('address')}}</textarea>
+{{--<textarea name="address" id="address" cols="30" class="form-control" rows="3">{{ $doctor->address->city ? $doctor->address->city : '',old('address')}}</textarea>--}}
 
                                 @error('address')
                                 <div class="alert alert-danger alert-dismissible fade show mt-1">

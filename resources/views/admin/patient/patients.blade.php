@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('module')
-    Supplier
+    Patient
 @endsection
 
 @section('before-path')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('title')
-    Supplier-List
+    Patient-List
 @endsection
 
 @section('breadcumb')
@@ -32,7 +32,7 @@
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">@yield('title')</h6>
             <div class="d-flex justify-content-between">
-                <a href="{{route('supplier.create')}}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i class="fa fa-plus-circle"></i> Add new @yield('module')</a>
+                <a href="{{route('patient.create')}}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i class="fa fa-plus-circle"></i> Add new @yield('module')</a>
                 <a href="{{route('inactive')}}" class="btn btn-sm btn-outline-danger text-capitalize"><i class="fa fa-ban"></i> In-Active @yield('module')</a>
             </div>
         </div>
@@ -89,22 +89,22 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($suppliers as $key=>$supplier)
+                                @foreach($patients as $key=>$patient)
                                 <tr role="row" class="odd">
-                                    <td class="sorting_1 text-center">{{$suppliers->firstItem() + $key}}</td>
-                                    <td class="sorting_1">{{$supplier->name}}</td>
-                                    <td>{{$supplier->sr_name}}</td>
-                                    <td>{{$supplier->phone}}</td>
+                                    <td class="sorting_1 text-center">{{$patients->firstItem() + $key}}</td>
+                                    <td class="sorting_1">{{$patient->name}}</td>
+                                    <td>{{$patient->sr_name}}</td>
+                                    <td>{{$patient->phone}}</td>
                                     <td class="text-center d-flex justify-content-center">
                                         <div class="text-center" style="max-width: 50px;">
-                                            <img src="{{asset($supplier->logo)}}" alt="{{$supplier->name}}" class="img-circle img-fluid">
+                                            <img src="{{asset($patient->logo)}}" alt="{{$patient->name}}" class="img-circle img-fluid">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="btn-group d-flex justify-content-center">
-                                            <a href="{{route('supplier.show',$supplier->id)}}" class="btn btn-sm btn-outline-info mr-3"><i class="fa fa-eye"></i></a>
-                                            <a href="{{route('supplier.edit',$supplier->id)}}" class="btn btn-sm btn-outline-warning mr-3"><i class="fa fa-edit"></i></a>
-                                            <a href="{{route('supplier_soft_delete',$supplier->id)}}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
+                                            <a href="{{route('patient.show',$patient->id)}}" class="btn btn-sm btn-outline-info mr-3"><i class="fa fa-eye"></i></a>
+                                            <a href="{{route('patient.edit',$patient->id)}}" class="btn btn-sm btn-outline-warning mr-3"><i class="fa fa-edit"></i></a>
+                                            <a href="{{route('Patient_soft_delete',$patient->id)}}" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-7">
-                            {{$suppliers->links()}}
+                            {{$patients->links()}}
                         </div>
                     </div>
                 </div>

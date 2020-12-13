@@ -69,7 +69,7 @@ class DoctorController extends Controller
         }
         $address = Address::create([
             'user_id' => $last_id,
-            'address' => $request->address,
+            'city' => $request->address,
         ]);
 
         return back();
@@ -101,14 +101,11 @@ class DoctorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-
-
-
         $user = User::findOrFail($id)->first();
         if ($request->has('name')) {
             $user->name = $request->name;
@@ -125,6 +122,15 @@ class DoctorController extends Controller
             $address->address = $request->address;
             $address->save();
         }
+//        if ($request->has('phone')) {
+//            $user->phone = $request->phone;
+//            $user->save();
+//        }
+//        if ($request->has('address')) {
+//            $address = Address::where('user_id', $doctor)->get();
+//            $address->city = $request->address;
+//            $address->update();
+//        }
 
 
         //updating logo

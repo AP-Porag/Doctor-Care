@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin\Patient;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
+use App\User;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -14,7 +16,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        $patients = Patient::orderBy('created_at','DESC')->paginate(5);
+        return response(view('admin.patient.patients',compact('patients')));
     }
 
     /**
@@ -24,7 +27,8 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        $doctors = User::all();
+        return response(view('admin.patient.patients-create',compact('doctors')));
     }
 
     /**
@@ -35,7 +39,29 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        "name": null,
+//"email": null,
+//"phone": null,
+//"doctor": "1",
+//"birth_date": null,
+//"blood_group": "3",
+//"male": "male",
+//"country": null,
+//"division": null,
+//"district": null,
+//"city": null,
+//"sub_district": null,
+//"village": null
+
+
+    if ($request->has('name'||'email||phone')){
+        //data save to user table
+    }
+    if ($request->has('name'||'email||phone')){
+        //data save to user table
+    }
+
+        return response($request->all());
     }
 
     /**
