@@ -52,7 +52,7 @@ class Permission extends Model implements PermissionContract
      * A permission should be belongs to a class.
      */
 
-    public function groups()
+    public function group()
     {
         return $this->belongsTo(Group::class);
     }
