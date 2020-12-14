@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Appointment;
 use App\Models\Group;
 use App\Models\Phone;
 use App\Models\Profile;
@@ -78,5 +79,10 @@ class User extends Authenticatable
     public function address()
     {
         return $this->hasOne(Address::class)->withTrashed();
+    }
+
+    public function userAppointments()
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

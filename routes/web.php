@@ -60,6 +60,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     //Patient route start
     Route::resource('patient', 'Admin\Patient\PatientController');
 
+    //Appointment route start
+    Route::resource('appointment','Admin\Appointment\AppointmentsController');
+    Route::get('/appointment/soft-delete/{id}', 'Admin\Appointment\AppointmentsController@softDelete')->name('appointment_soft_delete');
+    Route::get('/appointment/restore/{id}', 'Admin\Appointment\AppointmentsController@restore')->name('restore_appointment');
+    Route::get('/appointment/force-delete/{id}', 'Admin\Appointment\AppointmentsController@forceDelete')->name('forceDelete_appointment');
+    Route::get('/appointment/inactive/appointment', 'Admin\Appointment\AppointmentsController@inactive')->name('inactive_appointments');
+    Route::get('/appointment/paymentView/{id}', 'Admin\Appointment\AppointmentsController@paymentView')->name('appointment_paymentView');
+    Route::get('/appointment/confirmation/{id}', 'Admin\Appointment\AppointmentsController@confirmation')->name('confirmation_appointment');
+
     //Supplier route start
     Route::resource('supplier', 'Admin\Supplier\SupplierController');
     Route::get('/supplier/soft-delete/{id}', 'Admin\Supplier\SupplierController@softDelete')->name('supplier_soft_delete');

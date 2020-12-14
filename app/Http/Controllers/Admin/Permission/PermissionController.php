@@ -106,6 +106,7 @@ class PermissionController extends Controller
         return back();
     }
 
+    //extra operations start here
     public static function softDelete(int $id)
     {
         $permission = Permission::findOrFail($id)->delete();
@@ -132,6 +133,8 @@ class PermissionController extends Controller
         Session::flash('success','Permission Deleted Successfully !');
         return back();
     }
+
+    //extra operations end here
 
     /**
      * Remove the specified resource from storage.
