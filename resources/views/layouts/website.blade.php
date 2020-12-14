@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- Site Metas -->
-    <title>Doctor Care</title>
+    <title>@yield('title')</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -16,6 +16,7 @@
     <link rel="shortcut icon" href="{{asset('frontend/images/fevicon.ico.png')}}" type="image/x-icon"/>
     <link rel="apple-touch-icon" href="{{asset('frontend/images/apple-touch-icon.png')}}">
     <!-- Bootstrap CSS -->
+{{--    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap4.min.css')}}">--}}
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
     <!-- Site CSS -->
     <link rel="stylesheet" href="{{asset('frontend/style.css')}}">
@@ -26,7 +27,8 @@
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="{{'frontend/css/responsive.css'}}">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{asset('frontend/css/custom.css')}}"><!DOCTYPE html>
+    <link rel="stylesheet" href="{{asset('frontend/css/custom.css')}}">
+    <!DOCTYPE html>
     <!-- Modernizer for Portfolio -->
     <script src="{{asset('frontend/js/modernizer.js')}}"></script>
     <!-- [if lt IE 9] -->
@@ -40,7 +42,8 @@
 <header>
     <div class="header-top wow fadeIn">
         <div class="container">
-            <a class="navbar-brand" href="{{route('website')}}"><img src="{{asset('frontend/images/logo.png')}}" alt="image"></a>
+            <a class="navbar-brand" href="{{route('website')}}"><img src="{{asset('frontend/images/logo.png')}}"
+                                                                     alt="image"></a>
             <div class="right-header">
                 <div class="header-info">
                     <div class="info-inner">
@@ -58,14 +61,27 @@
                     </div>
                     <div class="info-inner">
                         @guest
-                            <a href="{{route('login')}}" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1"
+                            <a href="{{route('login')}}" data-scroll
+                               class="btn btn-light btn-radius btn-brd grd1 effect-1"
                                style="margin-right: 5px;">Log in</a>
-                            <a href="{{route('register')}}" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1"
+                            <a href="{{route('register')}}" data-scroll
+                               class="btn btn-light btn-radius btn-brd grd1 effect-1"
                                style="margin-right: 10px; margin-left: 5px;">Sign Up</a>
                         @endguest
                         @auth
-                            <a href="{{ route('home') }}" data-scroll class="btn btn-light btn-radius btn-brd grd1 effect-1">My
+                            <a href="{{ route('home') }}" data-scroll
+                               class="btn btn-light btn-radius btn-brd grd1 effect-1">My
                                 Account</a>
+
+                                <a class="btn btn-light btn-radius btn-brd grd1 effect-1" href="{{ route('logout') }}" data-scroll
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                         @endauth
                     </div>
                 </div>
@@ -83,7 +99,7 @@
 
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a class="active" href="">Home</a></li>
+                        <li><a class="active" href="{{route('website')}}">Home</a></li>
                         <li><a data-scroll href="#about">About us</a></li>
                         <li><a data-scroll href="#service">Services</a></li>
                         <li><a data-scroll href="#doctors">Doctors</a></li>
@@ -108,7 +124,58 @@
         </div>
     </div>
 </header>
-@yield('content')
+<div class="content">
+    @yield('content')
+
+    <footer id="footer" class="footer-area wow fadeIn">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="logo padding">
+                        <a href=""><img src="{{asset('frontend/images/logo.png')}}" alt=""></a>
+                        <p>Locavore pork belly scen ester pine est chill wave microdosing pop uple itarian cliche
+                            artisan.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-info padding">
+                        <h3>CONTACT US</h3>
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> PO Box 16122 Collins Street West Victoria
+                            8007 Australia</p>
+                        <p><i class="fa fa-paper-plane" aria-hidden="true"></i> info@gmail.com</p>
+                        <p><i class="fa fa-phone" aria-hidden="true"></i> (+1) 800 123 456</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="subcriber-info">
+                        <h3>SUBSCRIBE</h3>
+                        <p>Get healthy news, tip and solutions to your problems from our experts.</p>
+                        <div class="subcriber-box">
+                            <form id="mc-form" class="mc-form">
+                                <div class="newsletter-form">
+                                    <input type="email" autocomplete="off" id="mc-email" placeholder="Email address"
+                                           class="form-control" name="EMAIL">
+                                    <button class="mc-submit" type="submit"><i class="fa fa-paper-plane"></i></button>
+                                    <div class="clearfix"></div>
+                                    <!-- mailchimp-alerts Start -->
+                                    <div class="mailchimp-alerts">
+                                        <div class="mailchimp-submitting"></div>
+                                        <!-- mailchimp-submitting end -->
+                                        <div class="mailchimp-success"></div>
+                                        <!-- mailchimp-success end -->
+                                        <div class="mailchimp-error"></div>
+                                        <!-- mailchimp-error end -->
+                                    </div>
+                                    <!-- mailchimp-alerts end -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
 <div class="copyright-area wow fadeIn">
     <div class="container">
         <div class="row">

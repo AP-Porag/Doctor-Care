@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Supplier;
 use App\Http\Controllers\Controller;
 use App\Models\Suppliers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Image;
 
@@ -64,6 +65,8 @@ class SupplierController extends Controller
             $supplier->logo = '/storage/logos/' . $image_new_name;
             $supplier->update();
         }
+
+        Session::flash('success','Supplier Added Successfully !');
         return back();
     }
 
@@ -126,6 +129,9 @@ class SupplierController extends Controller
             $supplier->logo = '/storage/logos/' . $image_new_name;
             $supplier->save();
         }
+
+        Session::flash('success','Supplier Updated Successfully !');
+
         return redirect(route('supplier.index'));
     }
 
@@ -139,6 +145,8 @@ class SupplierController extends Controller
     public function restore($id)
     {
         Suppliers::onlyTrashed()->findOrFail($id)->restore();
+
+        Session::flash('success','Supplier Activated Again !');
         return back();
     }
 
@@ -146,6 +154,8 @@ class SupplierController extends Controller
     public function softDelete($id)
     {
         $supplier = Suppliers::findOrFail($id)->delete();
+
+        Session::flash('success','Supplier Inactivated Successfully !');
         return back();
     }
 
@@ -154,6 +164,7 @@ class SupplierController extends Controller
     {
         Suppliers::onlyTrashed()->findOrFail($id)->forceDelete();
 
+        Session::flash('success','Supplier Deleted Successfully !');
         return back();
     }
 

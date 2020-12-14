@@ -88,7 +88,6 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{asset('frontend/images/fevicon.ico.png')}}" type="image/x-icon"/>
     <title>Doctor-Care - Register</title>
-  <title>Doctor-Care Register</title>
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -123,14 +122,14 @@
               <form class="user" method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="form-group">
-                  <input type="name" class="form-control form-control-user @error('name') is-invalid @enderror" id="exampleInputEmail" name="name" placeholder="Enter Name" value="{{ old('name') }}" autofocus autocomplete="name">
+                  <input type="text" class="form-control form-control-user @error('name') is-invalid @enderror" id="exampleInputEmail" name="name" placeholder="Enter Name" value="{{ old('name') }}" autofocus autocomplete="name">
                   @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                   @enderror
                 </div>
-                
+
                 <div class="form-group">
                   <input type="email" class="form-control form-control-user @error('email') is-invalid @enderror" id="exampleInputEmail" name="email" placeholder="Email Address" value="{{ old('email') }}" autocomplete="email">
                   @error('email')
@@ -153,7 +152,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="phone" class="form-control form-control-user @error('phone') is-invalid @enderror" id="exampleInputEmail" name="phone" placeholder="Enter Phone" value="{{ old('phone') }}" autofocus autocomplete="name">
+                  <input type="text" class="form-control form-control-user @error('phone') is-invalid @enderror" id="exampleInputEmail" name="phone" placeholder="Enter Phone" value="{{ old('phone') }}" autofocus autocomplete="phone">
                   @error('phone')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -161,7 +160,7 @@
                   @enderror
                 </div>
 
-               
+
 
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                   {{ __('Register Account') }}

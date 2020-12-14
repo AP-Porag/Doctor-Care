@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{asset('frontend/images/fevicon.ico.png')}}" type="image/x-icon"/>
-    <title>Doctor Care Dashboard</title>
-
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <!-- Custom fonts for this template-->
+    <title>@yield('title')</title>
+@yield('style')
+{{--    <link rel="stylesheet" href="{{asset('css/app.css')}}">--}}
+<!-- Custom fonts for this template-->
     <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -20,22 +20,23 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
-    <style>
-        .userDropdown {
-            position: absolute;
-            top: 70px;
-            z-index: 1;
-            border-bottom-right-radius: 5px;
-            border-bottom-left-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    {{--    <style>--}}
+    {{--        .userDropdown {--}}
+    {{--            position: absolute;--}}
+    {{--            top: 70px;--}}
+    {{--            z-index: 1;--}}
+    {{--            border-bottom-right-radius: 5px;--}}
+    {{--            border-bottom-left-radius: 5px;--}}
+    {{--        }--}}
+    {{--    </style>--}}
 
 </head>
 
 <body id="page-top">
 
-<div class="" id="app">
-    <!-- Page Wrapper -->
+<div class="" id="app"> {{--id="app"--}}
+<!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -68,6 +69,35 @@
             </div>
 
             <!-- Nav Item - start here Collapse Menu -->
+            <!-- Nav Item - User Management -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-user-plus"></i>
+                    <span>User Management</span>
+                </a>
+                <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('user.index')}}">User List</a>
+                        <a class="collapse-item" href="#">Assign Role</a>
+                        <a class="collapse-item" href="#">Assign Permission</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Role Management -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRole"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-lock"></i>
+                    <span>Role Management</span>
+                </a>
+                <div id="collapseRole" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('role.index')}}">Role List</a>
+                        <a class="collapse-item" href="{{route('permission.index')}}">Permission List</a>
+                    </div>
+                </div>
+            </li>
             <!-- Nav Item - Doctors -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDoctor"
@@ -316,7 +346,8 @@
                                     </div>
                                     <div class="font-weight-bold">
                                         <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
+                                            problem I've been having.
+                                        </div>
                                         <div class="small text-gray-500">Emily Fowler · 58m</div>
                                     </div>
                                 </a>
@@ -328,7 +359,8 @@
                                     </div>
                                     <div>
                                         <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
+                                            would you like them sent to you?
+                                        </div>
                                         <div class="small text-gray-500">Jae Chun · 1d</div>
                                     </div>
                                 </a>
@@ -340,7 +372,8 @@
                                     </div>
                                     <div>
                                         <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
+                                            the progress so far, keep up the good work!
+                                        </div>
                                         <div class="small text-gray-500">Morgan Alvarez · 2d</div>
                                     </div>
                                 </a>
@@ -352,7 +385,8 @@
                                     </div>
                                     <div>
                                         <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
+                                            told me that people say this to all dogs, even if they aren't good...
+                                        </div>
                                         <div class="small text-gray-500">Chicken the Dog · 2w</div>
                                     </div>
                                 </a>
@@ -362,33 +396,46 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
+                        {{--                        Dropdown--}}
+
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" @click="userDropdown">
-                                <span class="mr-2 d-none d-lg-inline text-primary small">{{ Auth::user()->name }}</span>
-                                <img class="img-profile rounded-circle" alt="{{Auth::user()->name}}"
-                                     src="{{asset('admin/img/undraw_profile.svg')}}">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <ul class="list-group">
+                                    <li style="list-style: none;"><span
+                                            class="mr-2 d-none d-lg-inline text-primary middle text-capitalize">{{Auth::user()->name}}</span>
+                                    </li>
+                                    <li style="list-style: none;">
+                                        <span class="mr-2 d-none d-lg-inline text-info small text-capitalize">
+                                            @foreach(Auth::user()->roles as $role)
+                                                {{$role->name}}
+                                            @endforeach
+                                        </span>
+                                    </li>
+                                </ul>
+                                <img class="img-profile rounded-circle" src="{{asset('admin/img/undraw_profile.svg')}}"
+                                     alt="{{Auth::user()->name}}">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="bg-gradient-primary userDropdown dropdown-menu-right shadow animated--grow-in" v-show="visible"
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in bg-gradient-primary"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item text-light" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2"></i>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-light"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item text-light" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2"></i>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-light"></i>
                                     Settings
                                 </a>
-                                <a class="dropdown-item text-light" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2"></i>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-light"></i>
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <div class="">
                                     <a class="dropdown-item text-light" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                                                     document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>Logout
                                     </a>
 
@@ -469,7 +516,7 @@
     </div>
 </div>
 
-<script src="{{asset('js/app.js')}}"></script>
+{{--<script src="{{asset('js/app.js')}}"></script>--}}
 <!-- Bootstrap core JavaScript-->
 <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -487,7 +534,13 @@
 <!-- Page level custom scripts -->
 <script src="{{asset('admin/js/demo/chart-area-demo.js')}}"></script>
 <script src="{{asset('admin/js/demo/chart-pie-demo.js')}}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+@yield('script')
+<script>
+    @if(\Illuminate\Support\Facades\Session::has('success'))
+    toastr.success("{{\Illuminate\Support\Facades\Session::get('success')}}");
+    @endif
+</script>
 </body>
 
 </html>

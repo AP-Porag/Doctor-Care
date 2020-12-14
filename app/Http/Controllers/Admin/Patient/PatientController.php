@@ -27,7 +27,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        $doctors = User::all();
+        $doctors = User::role('doctor')->get();;
         return response(view('admin.patient.patients-create',compact('doctors')));
     }
 
