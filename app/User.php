@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Group;
 use App\Models\Phone;
 use App\Models\Profile;
 use App\Models\Address;
@@ -9,11 +10,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Traits\HasRoles;
 
 
 class User extends Authenticatable
 {
-    use SoftDeletes;
+    use SoftDeletes,HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +35,27 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //Role management methods start
+
+    public static function getPermissionGroups()
+    {
+        return $permissionGroups = DB::table('permissions')->select('group_id')->groupBy('group_id')->get();
+        //return $permissionGroups = DB::table('permissions')->select('group_name')->groupBy('group_name')->get();
+    }
+
+    public static function roleHasPermissions($role,$permissions)
+    {
+        $hasPermission =  true;
+        foreach ($permissions as $permission){
+            if (!$role->hasPermissionTo($permission->name)){
+                $hasPermission = false;
+                return $hasPermission;
+            }
+        }
+        return $hasPermission;
+    }
+    //Role management methods end
 
     /**
      * The attributes that should be cast to native types.

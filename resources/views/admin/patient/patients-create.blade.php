@@ -262,7 +262,8 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="img-thumbnail">
-                                            <img :src="image" alt="logo" class="img-fluid">
+                                            <img src="image" alt="logo" class="img-fluid" id="preview" style="min-width: 100%;max-width: 100%;
+    max-height: 179px; min-height: 179px;">
                                         </div>
                                     </div>
                                     <div class="col-md-8 align-self-end">
@@ -302,6 +303,21 @@
 
 @section('script')
     <script>
+        $('#preview').attr('src', 'http://127.0.0.1:8000/admin/img/upload-image.png');
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
+                reader.onload = function(e) {
+                    $('#preview').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+
+        $("#logo").change(function() {
+            readURL(this);
+        });
     </script>
 @endsection

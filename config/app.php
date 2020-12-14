@@ -166,7 +166,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        // Spatie laravel Role Management
+        Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Application Service Providers...
          */

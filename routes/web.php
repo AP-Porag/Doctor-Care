@@ -17,17 +17,38 @@ Auth::routes();
 
 //backend route start
 Route::get('/home', 'HomeController@index')->name('home');
-// Route::resource('supplier', 'Admin\Supplier\SupplierController');
-// Route::get('/supplier/soft-delete/{id}', 'Admin\Supplier\SupplierController@softDelete')->name('supplier_soft_delete');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
-    //Supplier route start
-    Route::resource('supplier', 'Admin\Supplier\SupplierController');
-    Route::get('/supplier/soft-delete/{id}', 'Admin\Supplier\SupplierController@softDelete')->name('supplier_soft_delete');
-    Route::get('/supplier/restore/{id}', 'Admin\Supplier\SupplierController@restore')->name('restore');
-    Route::get('/supplier/force-delete/{id}', 'Admin\Supplier\SupplierController@forceDelete')->name('forceDelete');
-    Route::get('/supplier/inactive/suppliers', 'Admin\Supplier\SupplierController@inactive')->name('inactive');
+    //User maneging start
+    Route::resource('user', 'Admin\User\UsersController');
+    Route::get('/user/soft-delete/{id}', 'Admin\User\UsersController@softDelete')->name('user_soft_delete');
+    Route::get('/user/restore/{id}', 'Admin\User\UsersController@restore')->name('restore_user');
+    Route::get('/user/force-delete/{id}', 'Admin\User\UsersController@forceDelete')->name('forceDelete_user');
+    Route::get('/user/inactive/user', 'Admin\User\UsersController@inactive')->name('inactive_users');
+
+    //assign role to user
+    Route::get('/user/assignRolePageView/{id}', 'Admin\User\UsersController@assignRolePageView')->name('assignRolePageView');
+    Route::post('/user/assignRole/{id}', 'Admin\User\UsersController@assignRole')->name('assignRole');
+
+    //assign permission to user
+    Route::get('/user/assignPermissionPageView/{id}', 'Admin\User\UsersController@assignPermissionPageView')->name('assignPermissionPageView');
+    Route::post('/user/assignPermission/{id}', 'Admin\User\UsersController@assignPermission')->name('assignPermission');
+
+    //Role Route start
+    Route::resource('role', 'Admin\Role\RolesController');
+    Route::get('/role/soft-delete/{id}', 'Admin\Role\RolesController@softDelete')->name('role_soft_delete');
+    Route::get('/role/restore/{id}', 'Admin\Role\RolesController@restore')->name('restore_role');
+    Route::get('/role/force-delete/{id}', 'Admin\Role\RolesController@forceDelete')->name('forceDelete_role');
+    Route::get('/role/inactive/role', 'Admin\Role\RolesController@inactive')->name('inactive_roles');
+
+    //Permission Route start
+    Route::resource('permission', 'Admin\Permission\PermissionController');
+    Route::get('/permission/soft-delete/{id}', 'Admin\Permission\PermissionController@softDelete')->name('permission_soft_delete');
+    Route::get('/permission/restore/{id}', 'Admin\Permission\PermissionController@restore')->name('restore_permission');
+    Route::get('/permission/force-delete/{id}', 'Admin\Permission\PermissionController@forceDelete')->name('forceDelete_permission');
+    Route::get('/permission/inactive/permission', 'Admin\Permission\PermissionController@inactive')->name('inactive_permission');
+    Route::post('/permission/group/store', 'Admin\Permission\PermissionController@store_group')->name('store_group');
 
     //Doctor route start
     Route::resource('doctor', 'Admin\Doctor\DoctorController');
@@ -38,4 +59,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     //Patient route start
     Route::resource('patient', 'Admin\Patient\PatientController');
+
+    //Supplier route start
+    Route::resource('supplier', 'Admin\Supplier\SupplierController');
+    Route::get('/supplier/soft-delete/{id}', 'Admin\Supplier\SupplierController@softDelete')->name('supplier_soft_delete');
+    Route::get('/supplier/restore/{id}', 'Admin\Supplier\SupplierController@restore')->name('restore');
+    Route::get('/supplier/force-delete/{id}', 'Admin\Supplier\SupplierController@forceDelete')->name('forceDelete');
+    Route::get('/supplier/inactive/suppliers', 'Admin\Supplier\SupplierController@inactive')->name('inactive');
 });

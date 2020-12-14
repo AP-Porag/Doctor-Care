@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Doctor;
 
+use Illuminate\Support\Facades\Session;
 use Image;
 use App\User;
 use App\Models\Phone;
@@ -71,7 +72,7 @@ class DoctorController extends Controller
             'user_id' => $last_id,
             'city' => $request->address,
         ]);
-
+        Session::flash('success','Doctor Added Successfully !');
         return back();
     }
 
@@ -145,6 +146,8 @@ class DoctorController extends Controller
             $profile->profile_picture = '/storage/profile_picture/' . $image_new_name;
             $profile->save();
         }
+
+        Session::flash('success','Doctor Updated Successfully !');
         return redirect(route('doctor.index'));
     }
 
@@ -161,6 +164,8 @@ class DoctorController extends Controller
         $supplier = User::findOrFail($id)->delete();
         $profile_picture = Profile::where('user_id', $id)->delete();
         $address = Address::where('user_id', $id)->delete();
+
+        Session::flash('success','Doctor Inactivated Successfully !');
         return back();
     }
 
@@ -174,13 +179,17 @@ class DoctorController extends Controller
     //restore soft deleted data
     public function restore($id)
     {
-        User::onlyTrashed()->findOrFail($id)->restore();;
+        User::onlyTrashed()->findOrFail($id)->restore();
+
+        Session::flash('success','Doctor Active Again !');
         return back();
     }
-    //force deleted data of 
+    //force deleted data of
     public function forceDelete($id)
     {
         User::onlyTrashed()->findOrFail($id)->forceDelete();
+
+        Session::flash('success','Doctor Deleted Successfully !');
         return back();
     }
 
