@@ -3,11 +3,14 @@
 namespace App;
 
 use App\Models\Appointment;
+use App\Models\Dew;
+use App\Models\Doctor;
 use App\Models\Schedule;
 use App\Models\Group;
 use App\Models\Phone;
 use App\Models\Profile;
 use App\Models\Address;
+use App\Models\Speciality;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,9 +28,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password', 'phone', 'username'
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -86,9 +87,23 @@ class User extends Authenticatable
     {
         return $this->hasMany(Appointment::class);
     }
+    public function dews()
+    {
+        return $this->hasMany(Dew::class,'patient_id');
+    }
+    public function specialities()
+    {
+        return $this->hasMany(Speciality::class);
+    }
+
+    public function doctor()
+    {
+        return $this->hasMany(Doctor::class);
+    }
 
     public function schedules()
     {
         return $this->hasMany(Schedule::class);
+
     }
 }

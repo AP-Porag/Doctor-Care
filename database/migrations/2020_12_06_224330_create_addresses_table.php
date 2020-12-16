@@ -14,11 +14,17 @@ class CreateAddressesTable extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
+
             $table->id();
-            $table->foreignId('user_id');
-            $table->text('address');
-            $table->string('deleted_at')->nullable();
+            $table->foreignId('user_id')->nullable(false);
+            $table->string('village')->nullable();
+            $table->string('sub_district')->nullable();
+            $table->string('city')->nullable();
+            $table->string('district')->nullable();
+            $table->string('division')->nullable();
+            $table->string('country')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

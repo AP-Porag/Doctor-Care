@@ -4,11 +4,9 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Profile extends Model
+class Speciality extends Model
 {
-    use SoftDeletes;
     protected $guarded = [];
 
     public function user()

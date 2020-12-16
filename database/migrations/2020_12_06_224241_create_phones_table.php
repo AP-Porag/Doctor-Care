@@ -16,8 +16,9 @@ class CreatePhonesTable extends Migration
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('contact');
+            $table->string('phone');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

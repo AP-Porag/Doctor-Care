@@ -119,8 +119,10 @@
                 </a>
                 <div id="collapsePatient" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('patient.index')}}">Patients List</a>
-                        <a class="collapse-item" href="#">Treatment History</a>
+                        <a class="collapse-item text-capitalize" href="{{route('patient.index')}}">Patients List</a>
+                        <a class="collapse-item text-capitalize" href="#">Payments</a>
+                        <a class="collapse-item text-capitalize" href="#">Case manager</a>
+                        <a class="collapse-item text-capitalize" href="#">Documents</a>
                     </div>
                 </div>
             </li>
@@ -149,6 +151,11 @@
                 <div id="collapseAppointment" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{route('appointment.index')}}">All Appointments</a>
+                        <a class="collapse-item" href="{{route('addPatientView')}}">Add Patient</a>
+                        <a class="collapse-item" href="{{route('appointments',Auth::user()->id)}}">Appointments</a>
+{{--                        @can('role:doctor')--}}
+{{--                            <a class="collapse-item" href="{{route('appointments',Auth::user()->id)}}">Appointments</a>--}}
+{{--                        @endcan--}}
                         <a class="collapse-item" href="#">Today's Appointment</a>
                     </div>
                 </div>

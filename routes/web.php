@@ -67,6 +67,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     //Patient route start
     Route::resource('patient', 'Admin\Patient\PatientController');
+    Route::get('/patient/soft-delete/{id}', 'Admin\Patient\PatientController@softDelete')->name('patient_soft_delete');
+    Route::get('/patient/restore/{id}', 'Admin\Patient\PatientController@restore')->name('restore_patient');
+    Route::get('/patient/force-delete/{id}', 'Admin\Patient\PatientController@forceDelete')->name('forceDelete_patient');
+    Route::get('/patient/inactive/patients', 'Admin\Patient\PatientController@inactive')->name('inactive_patients');
+    Route::get('/patient/inactive/findPrice', 'Admin\Patient\PatientController@findPrice')->name('findPrice');
 
     //Appointment route start
     Route::resource('appointment', 'Admin\Appointment\AppointmentsController');
@@ -76,6 +81,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/appointment/inactive/appointment', 'Admin\Appointment\AppointmentsController@inactive')->name('inactive_appointments');
     Route::get('/appointment/paymentView/{id}', 'Admin\Appointment\AppointmentsController@paymentView')->name('appointment_paymentView');
     Route::get('/appointment/confirmation/{id}', 'Admin\Appointment\AppointmentsController@confirmation')->name('confirmation_appointment');
+    Route::get('/appointment/add/add-patient', 'Admin\Appointment\AppointmentsController@addPatientView')->name('addPatientView');
+    Route::post('/appointment/add/store-patient', 'Admin\Appointment\AppointmentsController@storePatient')->name('storePatient');
+    Route::get('/appointment/appointments/{id}', 'Admin\Appointment\AppointmentsController@appointments')->name('appointments');
 
     //Supplier route start
     Route::resource('supplier', 'Admin\Supplier\SupplierController');

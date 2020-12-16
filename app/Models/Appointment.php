@@ -9,9 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Appointment extends Model
 {
     use SoftDeletes;
-    protected $fillable = [
-        'name','contact','doctor_id','date','remarks','status_id'
-    ];
+    protected $guarded = [];
 
     public function doctor()
     {

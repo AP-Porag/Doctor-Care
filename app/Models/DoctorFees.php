@@ -4,13 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Patient extends Model
+class DoctorFees extends Model
 {
     protected $guarded = [];
-
-    //relations between patient and others models start
-
-
-
-
 }
