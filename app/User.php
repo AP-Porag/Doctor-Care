@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Appointment;
+use App\Models\Schedule;
 use App\Models\Group;
 use App\Models\Phone;
 use App\Models\Profile;
@@ -17,7 +18,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use SoftDeletes,HasRoles;
+    use SoftDeletes, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -45,11 +46,11 @@ class User extends Authenticatable
         //return $permissionGroups = DB::table('permissions')->select('group_name')->groupBy('group_name')->get();
     }
 
-    public static function roleHasPermissions($role,$permissions)
+    public static function roleHasPermissions($role, $permissions)
     {
         $hasPermission =  true;
-        foreach ($permissions as $permission){
-            if (!$role->hasPermissionTo($permission->name)){
+        foreach ($permissions as $permission) {
+            if (!$role->hasPermissionTo($permission->name)) {
                 $hasPermission = false;
                 return $hasPermission;
             }
@@ -84,5 +85,10 @@ class User extends Authenticatable
     public function userAppointments()
     {
         return $this->hasMany(Appointment::class);
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
     }
 }
