@@ -17,7 +17,6 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -30,7 +29,6 @@
     {{--            border-bottom-left-radius: 5px;--}}
     {{--        }--}}
     {{--    </style>--}}
-
 </head>
 
 <body id="page-top">
@@ -128,8 +126,22 @@
                     </div>
                 </div>
             </li>
+            <!-- Nav Item - Schedule -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSchedule"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-clock"></i>
+                    <span>Schedules</span>
+                </a>
+                <div id="collapseSchedule" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('schedule.index')}}">All Schedule</a>
+                        <a class="collapse-item" href="#">Holiday</a>
+                    </div>
+                </div>
+            </li>
 
-            <!-- Nav Item - Patient -->
+            <!-- Nav Item - Appoinment -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAppointment"
                    aria-expanded="true" aria-controls="collapseTwo">

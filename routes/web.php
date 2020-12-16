@@ -57,6 +57,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/doctor/force-delete/{id}', 'Admin\Doctor\DoctorController@forceDelete')->name('forceDelete_doctor');
     Route::get('/doctor/inactive/doctors', 'Admin\Doctor\DoctorController@inactive')->name('inactive_doctors');
 
+    //Schedule route start
+    Route::resource('schedule', 'Admin\Schedule\ScheduleController');
+    Route::get('/schedule/soft-delete/{id}', 'Admin\Schedule\ScheduleController@softDelete')->name('schedule_soft_delete');
+    Route::get('/schedule/restore/{id}', 'Admin\Schedule\ScheduleController@restore')->name('restore_schedule');
+    Route::get('/doctor/force-delete/{id}', 'Admin\Schedule\ScheduleController@forceDelete')->name('forceDelete_schedule');
+    Route::get('/schedule/inactive/schedules', 'Admin\Schedule\ScheduleController@inactive')->name('inactive_schedules');
+
+
     //Patient route start
     Route::resource('patient', 'Admin\Patient\PatientController');
     Route::get('/patient/soft-delete/{id}', 'Admin\Patient\PatientController@softDelete')->name('patient_soft_delete');
@@ -66,7 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/patient/inactive/findPrice', 'Admin\Patient\PatientController@findPrice')->name('findPrice');
 
     //Appointment route start
-    Route::resource('appointment','Admin\Appointment\AppointmentsController');
+    Route::resource('appointment', 'Admin\Appointment\AppointmentsController');
     Route::get('/appointment/soft-delete/{id}', 'Admin\Appointment\AppointmentsController@softDelete')->name('appointment_soft_delete');
     Route::get('/appointment/restore/{id}', 'Admin\Appointment\AppointmentsController@restore')->name('restore_appointment');
     Route::get('/appointment/force-delete/{id}', 'Admin\Appointment\AppointmentsController@forceDelete')->name('forceDelete_appointment');

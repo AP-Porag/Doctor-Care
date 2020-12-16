@@ -15,8 +15,8 @@
 @section('breadcumb')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item text-capitalize"><a href="{{route('home')}}">Dashboard</a></li>
-            <li class="breadcrumb-item text-capitalize"><a href="{{route('patient.index')}}">@yield('before-path')</a>
+            <li class="breadcrumb-item text-capitalize"><a href="{{ route('home') }}">Dashboard</a></li>
+            <li class="breadcrumb-item text-capitalize"><a href="{{ route('patient.index') }}">@yield('before-path')</a>
             </li>
             <li class="breadcrumb-item active text-capitalize" aria-current="page">@yield('title')</li>
         </ol>
@@ -31,12 +31,12 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-end">
-            <a href="{{route('patient.index')}}" class="btn btn-sm btn-outline-primary"><i
+            <a href="{{ route('patient.index') }}" class="btn btn-sm btn-outline-primary"><i
                     class="fa fa-list"></i>@yield('before-path')</a>
         </div>
         <div class="card-body">
             <div class="form">
-                <form action="{{route('patient.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('patient.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
                         <div class="col-md-3">
@@ -147,9 +147,9 @@
                                     </div>
                                 </div>
                                 @error('gender')
-                                <div class="invalid-feedback">
-                                    <strong>Warning! </strong>{{$message}}
-                                </div>
+                                    <div class="invalid-feedback">
+                                        <strong>Warning! </strong>{{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                         </div>
@@ -316,7 +316,7 @@
                                     <div class="col-md-4">
                                         <div class="img-thumbnail">
                                             <img src="image" alt="logo" class="img-fluid" id="preview" style="min-width: 100%;max-width: 100%;
-    max-height: 179px; min-height: 179px;">
+        max-height: 179px; min-height: 179px;">
                                         </div>
                                     </div>
                                     <div class="col-md-8 align-self-end">
@@ -335,9 +335,8 @@
 
                                                 </div>
                                                 <div class="input-group-append">
-                                                                            <span
-                                                                                class="input-group-text bg-gradient-primary text-light"
-                                                                                id="">Upload Logo</span>
+                                                    <span class="input-group-text bg-gradient-primary text-light"
+                                                        id="">Upload Logo</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -398,7 +397,6 @@
 
 
         });
-
 
     </script>
 @endsection

@@ -211,15 +211,15 @@ class DoctorController extends Controller
             $address->address = $request->address;
             $address->save();
         }
-//        if ($request->has('phone')) {
-//            $user->phone = $request->phone;
-//            $user->save();
-//        }
-//        if ($request->has('address')) {
-//            $address = Address::where('user_id', $doctor)->get();
-//            $address->city = $request->address;
-//            $address->update();
-//        }
+        //        if ($request->has('phone')) {
+        //            $user->phone = $request->phone;
+        //            $user->save();
+        //        }
+        //        if ($request->has('address')) {
+        //            $address = Address::where('user_id', $doctor)->get();
+        //            $address->city = $request->address;
+        //            $address->update();
+        //        }
 
 
         //updating logo
@@ -235,7 +235,7 @@ class DoctorController extends Controller
             $profile->save();
         }
 
-        Session::flash('success','Doctor Updated Successfully !');
+        Session::flash('success', 'Doctor Updated Successfully !');
         return redirect(route('doctor.index'));
     }
 
@@ -253,7 +253,7 @@ class DoctorController extends Controller
         $profile_picture = Profile::where('user_id', $id)->delete();
         $address = Address::where('user_id', $id)->delete();
 
-        Session::flash('success','Doctor Inactivated Successfully !');
+        Session::flash('success', 'Doctor Inactivated Successfully !');
         return back();
     }
 
@@ -268,8 +268,7 @@ class DoctorController extends Controller
     public function restore($id)
     {
         User::onlyTrashed()->findOrFail($id)->restore();
-
-        Session::flash('success','Doctor Active Again !');
+        Session::flash('success', 'Doctor Active Again !');
         return back();
     }
     //force deleted data of
@@ -277,7 +276,7 @@ class DoctorController extends Controller
     {
         User::onlyTrashed()->findOrFail($id)->forceDelete();
 
-        Session::flash('success','Doctor Deleted Successfully !');
+        Session::flash('success', 'Doctor Deleted Successfully !');
         return back();
     }
 
