@@ -75,6 +75,11 @@
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
                                         rowspan="1"
                                         colspan="1" aria-sort="ascending"
+                                        aria-label="Name: activate to sort column descending">Doctor ID
+                                    </th>
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
+                                        rowspan="1"
+                                        colspan="1" aria-sort="ascending"
                                         aria-label="Name: activate to sort column descending">Name
                                     </th>
                                     <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
@@ -89,11 +94,11 @@
                                     </th>
                                     <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                         colspan="1"
-                                        aria-label="Age: activate to sort column ascending">Address
+                                        aria-label="Age: activate to sort column ascending">Speciality
                                     </th>
                                     <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                         colspan="1"
-                                        aria-label="Age: activate to sort column ascending">Profile
+                                        aria-label="Age: activate to sort column ascending">Fees
                                     </th>
                                     <th rowspan="1" colspan="1" class="text-center">Action
                                     </th>
@@ -103,21 +108,19 @@
                                 @foreach($doctors as $key => $doctor)
                                     <tr role="row" class="odd">
                                         <td class="sorting_1 text-center">{{ $doctors->firstItem() + $key }}</td>
+                                        <td class="sorting_1 text-center">{{ $doctor->id }}</td>
                                         <td class="sorting_1">{{ $doctor->name }}</td>
-                                        <td>
-                                            {{ $doctor->phone }}
+                                        <td class="sorting_1">{{ $doctor->phone }}</td>
+                                        <td class="sorting_1">{{ $doctor->email }}</td>
+                                        <td class="sorting_1">
+                                            @foreach($doctor->specialities as $speciality)
+                                                <h6 class="text-capitalize">{{$speciality->speciality}}</h6>
+                                            @endforeach
                                         </td>
-                                        <td>
-                                            {{ $doctor->email }}
-                                        </td>
-                                        <td style="width:20%;">
-                                            {{--                        <img src="{{ asset($doctor->profile->profile_picture ) }}" alt="{{ $doctor->name }}" class="img-fluid">--}}
-                                            {{ $doctor->address['address'] }}
-                                            
-                                        </td>
-                                        <td style="width:20%;">
-                                            <img src="{{ asset($doctor->profile['profile_picture'] ) }}" alt="{{ $doctor->name }}" class="img-fluid">
-                                           
+                                        <td class="sorting_1">
+                                            @foreach($doctor->doctor as $doctor_id)
+                                                {{$doctor_id->fees}}
+                                            @endforeach
                                         </td>
                                         <td>
                                             <div class="btn-group d-flex justify-content-center" role="group">

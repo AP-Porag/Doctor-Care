@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Doctor;
 
+use App\Models\Doctor;
+use App\Models\Education;
+use App\Models\Speciality;
 use Illuminate\Support\Facades\Session;
 use Image;
 use App\User;
@@ -21,8 +24,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        // $suppliers = Doctor::orderBy('created_at', 'DESC')->paginate(5);
-        $doctors = User::orderBy('created_at', 'DESC')->paginate(5);
+        $doctors = User::role('doctor')->orderBy('created_at', 'DESC')->paginate(5);
         return response()->view('admin.doctors.doctors', compact('doctors'));
     }
 
@@ -44,34 +46,120 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'phone' => $request->phone,
+        $this->validate($request,[
+
+            'name'=>'required|min:3',
+            'email'=>'email',
+            'phone'=>'required',
+            'fees'=>'required',
 
         ]);
-        $last_id = $user->id;
-        $profile_pictue = Profile::create([
-            'user_id' => $last_id,
-            'profile_picture' => '/storage/profile_picture/no_profile.png',
-        ]);
-        //Insert Profile Picture
-        if ($request->hasFile('profile_picture')) {
 
-            $image = $request->profile_picture;
-            $image_new_name = time() . '.' . $image->getClientOriginalExtension();
+        //data table saving direction && database field name
 
-            Image::make($request->profile_picture)
-                ->resize(300, 200)
-                ->save(base_path('public/storage/profile_picture/' . $image_new_name));
-            $profile_pictue->profile_picture = '/storage/profile_picture/' . $image_new_name;
-            $profile_pictue->save();
+        //        user table -> email,name,phone //
+        //model_has_role table -> user_id && patient role as id in role_id field //
+        //        phones table -> contact //
+        //        patient table -> user_id,gender,birth_date,blood_group //
+        //        appointment table -> doctor as status requested //
+        //saving patient fees data in doctorFees table //
+        //        address table -> village,sub_district,city,district,division,country//
+        //        profile table -> photo//
+
+        $name = $request->name;
+        $email = $request->email;
+        $phone = $request->phone;
+        $contact = $request->contact;
+        $joining_date = $request->joining_date;
+        $blood_group = $request->blood_group;
+        $gender = $request->gender;
+        $allocated_room = $request->room;
+        $fees = $request->fees;
+        $speciality = $request->speciality;
+        $degree = $request->degree;
+        $village = $request->village;
+        $sub_district = $request->sub_district;
+        $city = $request->city;
+        $district= $request->district;
+        $division= $request->division;
+        $country= $request->country;
+        $image = $request->photo;
+
+        //saving users and assign role
+        if ($name || $email || $phone){
+            $user = User::create([
+                'name'=>$name,
+                'email'=>$email,
+                'phone'=>$phone,
+            ]);
+            $user->syncRoles('doctor');
         }
-        $address = Address::create([
-            'user_id' => $last_id,
-            'city' => $request->address,
-        ]);
+        //saving contact in phones table
+
+        if ($user){
+            if ($contact){
+                Phone::create([
+                    'user_id'=>$user->id,
+                    'phone'=>$request->contact,
+                ]);
+
+            }
+        }
+        //saving doctors in doctor table
+        if ($user){
+            Doctor::create([
+                'user_id'=>$user->id,
+            'blood_group'=>$blood_group,
+                'gender'=>$gender,
+            'allocated_room'=>$allocated_room,
+            'fees'=>$fees,
+                'joining_date'=>$joining_date,
+
+            ]);
+        }
+//        //saving education in Appointments table for appointment
+        if ($user){
+            $education = Education::create([
+                'user_id'=>$user->id,
+                'degree'=>$degree,
+            ]);
+        }
+//        //saving speciality fees data in doctorFees table
+        if ($user){
+            $speciality = Speciality::create([
+                'user_id'=>$user->id,
+                'speciality'=>$speciality,
+            ]);
+        }
+
+//        //saving patient address data in addresses table
+        if ($user){
+            $doctor_address = Address::create([
+                'user_id'=>$user->id,
+                'village'=>$village,
+                'sub_district'=>$sub_district,
+                'city'=>$city,
+                'district'=>$district,
+                'division'=>$division,
+                'country'=>$country,
+            ]);
+        }
+//        //saving patient picture in profile table
+        if ($user){
+            $patient_picture = Profile::create([
+                'user_id'=>$user->id
+            ]);
+            if ($patient_picture && $image){
+                $image_new_name = time() . '.' . $image->getClientOriginalExtension();
+
+                Image::make($request->photo)
+                    ->resize(300, 200)
+                    ->save(base_path('public/storage/patient/' . $image_new_name));
+                $patient_picture->profile_picture = '/storage/patient/' . $image_new_name;
+                $patient_picture->save();
+            }
+        }
+
         Session::flash('success','Doctor Added Successfully !');
         return back();
     }

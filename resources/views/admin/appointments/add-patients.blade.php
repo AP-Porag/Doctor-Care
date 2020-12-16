@@ -1,22 +1,22 @@
 @extends('layouts.admin')
 
 @section('module')
-    Doctor
+    Appointment
 @endsection
 
 @section('before-path')
-    Doctor-List
+    Appointment-List
 @endsection
 
 @section('title')
-    Add new Doctor
+    Add new Patient
 @endsection
 
 @section('breadcumb')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item text-capitalize"><a href="{{route('home')}}">Dashboard</a></li>
-            <li class="breadcrumb-item text-capitalize"><a href="{{route('doctor.index')}}">@yield('before-path')</a>
+            <li class="breadcrumb-item text-capitalize"><a href="{{route('appointment.index')}}">@yield('before-path')</a>
             </li>
             <li class="breadcrumb-item active text-capitalize" aria-current="page">@yield('title')</li>
         </ol>
@@ -31,12 +31,12 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-end">
-            <a href="{{route('doctor.index')}}" class="btn btn-sm btn-outline-primary"><i
+            <a href="{{route('appointment.index')}}" class="btn btn-sm btn-outline-primary"><i
                     class="fa fa-list"></i>@yield('before-path')</a>
         </div>
         <div class="card-body">
             <div class="form">
-                <form action="{{route('doctor.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('storePatient')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
                         <div class="col-md-3">
@@ -44,7 +44,7 @@
                                 <label for="name" class="text-capitalize">Name</label>
                                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                                        id="name"
-                                       placeholder="Enter Doctor name" value="{{ old('name') }}">
+                                       placeholder="Enter Patient name" value="{{ old('name') }}">
                                 @error('name')
                                 <div class="invalid-feedback mt-1">
                                     <strong>Warning! </strong> <span>{{$message}}</span>
@@ -57,7 +57,7 @@
                                 <label for="email" class="text-capitalize">Email</label>
                                 <input type="email" name="email"
                                        class="form-control @error('email') is-invalid @enderror" id="email"
-                                       placeholder="Enter Doctor email" value="{{ old('email') }}">
+                                       placeholder="Enter Patient email" value="{{ old('email') }}">
                                 @error('email')
                                 <div class="invalid-feedback mt-1">
                                     <strong>Warning! </strong> <span>{{$message}}</span>
@@ -70,7 +70,7 @@
                                 <label for="phone" class="text-capitalize">Phone</label>
                                 <input type="text" name="phone"
                                        class="form-control @error('phone') is-invalid @enderror" id="phone"
-                                       placeholder="Enter Doctor phone" value="{{ old('phone') }}">
+                                       placeholder="Enter Patient phone" value="{{ old('phone') }}">
                                 @error('phone')
                                 <div class="invalid-feedback mt-1">
                                     <strong>Warning! </strong> <span>{{$message}}</span>
@@ -93,11 +93,11 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="joining_date" class="text-capitalize">Joining Date</label>
-                                <input type="date" name="joining_date"
-                                       class="form-control @error('joining_date') is-invalid @enderror" id="joining_date"
-                                       placeholder="Enter Doctor Joining date" {{ old('joining_date') }}>
-                                @error('joining_date')
+                                <label for="birth_date" class="text-capitalize">Birth Date</label>
+                                <input type="date" name="birth_date"
+                                       class="form-control @error('birth_date') is-invalid @enderror" id="birth_date"
+                                       placeholder="Enter Patient birth date" {{ old('birth_date') }}>
+                                @error('birth_date')
                                 <div class="invalid-feedback mt-1">
                                     <strong>Warning! </strong> <span>{{$message}}</span>
                                 </div>
@@ -155,10 +155,40 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
+                                <label for="date" class="text-capitalize">Appointment Date</label>
+                                <input type="date" name="date"
+                                       class="form-control @error('date') is-invalid @enderror" id="date"
+                                       placeholder="Enter Patient Appointment date" {{ old('birth_date') }}>
+                                @error('date')
+                                <div class="invalid-feedback mt-1">
+                                    <strong>Warning! </strong> <span>{{$message}}</span>
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="doctor" class="text-capitalize">doctor</label>
+                                <select class="custom-select mr-sm-2 @error('doctor') is-invalid @enderror" id="doctor"
+                                        name="doctor">
+                                    <option selected disabled>--Select Doctor--</option>
+                                    @foreach($doctors as $doctor)
+                                        <option value="{{$doctor->id}}">{{$doctor->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('doctor')
+                                <div class="invalid-feedback mt-1">
+                                    <strong>Warning! </strong> <span>{{$message}}</span>
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
                                 <label for="fees" class="text-capitalize">Fees</label>
                                 <input type="number" name="fees"
-                                       class="form-control @error('fees') is-invalid @enderror" id="fees"
-                                       placeholder="Consultation Fees" value="{{ old('fees') }}">
+                                       class="form-control prod_price @error('fees') is-invalid @enderror" id="fees"
+                                       placeholder="Consultation Fees" value="{{ old('fees') }}" readonly>
                                 @error('fees')
                                 <div class="invalid-feedback mt-1">
                                     <strong>Warning! </strong> <span>{{$message}}</span>
@@ -168,65 +198,19 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="room" class="text-capitalize">Allocate Room</label>
-                                <input type="number" name="room"
-                                       class="form-control @error('room') is-invalid @enderror" id="room"
-                                       placeholder="Allocate Room" value="{{ old('room') }}">
-                                @error('room')
+                                <label for="payment_type" class="text-capitalize">Payment Type</label>
+                                <select class="custom-select mr-sm-2 @error('payment_type') is-invalid @enderror" id="payment_type"
+                                        name="payment_type">
+                                    <option selected disabled>--Select payment type--</option>
+                                    @foreach($types as $type)
+                                        <option class="text-capitalize" value="{{$type->id}}">{{$type->name}}</option>
+                                    @endforeach
+                                </select>
+                                @error('payment_type')
                                 <div class="invalid-feedback mt-1">
                                     <strong>Warning! </strong> <span>{{$message}}</span>
                                 </div>
                                 @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-row">
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <label for="degree" class="text-capitalize">Degree</label>
-                                        <input type="text" name="degree"
-                                               class="form-control @error('degree') is-invalid @enderror" id="degree"
-                                               placeholder="Educational Degree" value="{{ old('degree') }}">
-                                        @error('degree')
-                                        <div class="invalid-feedback mt-1">
-                                            <strong>Warning! </strong> <span>{{$message}}</span>
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="buttons" class="text-capitalize">Add More</label>
-                                        <div id="buttons" class="border-0">
-                                            <button class="btn btn-outline-success"><i class="fa fa-plus-circle"></i></button>
-                                            <button class="btn btn-outline-danger"><i class="fa fa-minus-circle"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <label for="speciality" class="text-capitalize">Speciality</label>
-                                        <input type="text" name="speciality"
-                                               class="form-control @error('speciality') is-invalid @enderror" id="speciality"
-                                               placeholder="Treatment Speciality" value="{{ old('speciality') }}">
-                                        @error('speciality')
-                                        <div class="invalid-feedback mt-1">
-                                            <strong>Warning! </strong> <span>{{$message}}</span>
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="buttons" class="text-capitalize">Add More</label>
-                                        <div id="buttons" class="border-0">
-                                            <button class="btn btn-outline-success"><i class="fa fa-plus-circle"></i></button>
-                                            <button class="btn btn-outline-danger"><i class="fa fa-minus-circle"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -342,7 +326,7 @@
                                                     <input type="file" name="photo"
                                                            class="form-control @error('photo') is-invalid @enderror"
                                                            id="photo"
-                                                           placeholder="Enter Doctor photo" @change="fileChange">
+                                                           placeholder="Enter Patient photo" @change="fileChange">
                                                     @error('photo')
                                                     <div class="invalid-feedback">
                                                         <strong>Warning! </strong>{{$message}}
@@ -362,7 +346,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save @yield('module')</button>
+                    <button type="submit" class="btn btn-primary">@yield('title')</button>
                 </form>
             </div>
         </div>
@@ -370,6 +354,7 @@
 @endsection
 
 @section('script')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
         $('#preview').attr('src', 'http://127.0.0.1:8000/storage/no-image/upload-image.png');
 
@@ -389,6 +374,31 @@
             readURL(this);
         });
 
-        // add more button jquery should be write here
+        //doctor fees load according selected doctor
+        $(document).on('change','#doctor',function () {
+            var user_id=$(this).val();
+
+            console.log('Doctor ID - '+user_id);
+            $.ajax({
+                type:'get',
+                url:'/admin/patient/inactive/findPrice',
+                data:{'user_id':user_id},
+                dataType:'json',//return data will be json
+                success:function(data){
+                    console.log('Doctor fees - '+data.fees);
+
+                    // here price is coloumn name in products table data.coln name
+                    $('#fees').val(data.fees);
+
+                },
+                error:function(){
+
+                }
+            });
+
+
+        });
+
+
     </script>
 @endsection
