@@ -9,7 +9,7 @@
 @endsection
 
 @section('title')
-    Lab-List
+    Lab-Report-List
 @endsection
 
 @section('breadcumb')
@@ -32,10 +32,10 @@
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">@yield('title')</h6>
             <div class="d-flex justify-content-between">
-                <a href="{{ route('lab.create') }}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i
-                        class="fa fa-plus-circle"></i> Add new @yield('module')</a>
+                <a href="{{ route('makeLabReport') }}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i
+                        class="fa fa-plus-circle"></i> Create new Lab Report</a>
                 <a href="{{ route('inactive_labs') }}" class="btn btn-sm btn-outline-danger text-capitalize"><i
-                        class="fa fa-ban"></i> In-Active @yield('module')</a>
+                        class="fa fa-ban"></i> undelivered report</a>
             </div>
         </div>
         <div class="card-body">
@@ -71,23 +71,23 @@
                                         </th>
                                         <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
                                             rowspan="1" colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending">Name
+                                            aria-label="Name: activate to sort column descending">Report Id
                                         </th>
                                         <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
                                             rowspan="1" colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending">advice
+                                            aria-label="Name: activate to sort column descending">test Name
                                         </th>
                                         <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
                                             rowspan="1" colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending">Price
+                                            aria-label="Name: activate to sort column descending">Patient Name
                                         </th>
                                         <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
                                             rowspan="1" colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending">commission
+                                            aria-label="Name: activate to sort column descending">Prepared By
                                         </th>
                                         <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending">
-                                            Template
+                                            Verified By
                                         </th>
                                         <th rowspan="1" colspan="1" class="text-center">Action
                                         </th>
@@ -95,23 +95,23 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($labs as $key => $lab)
+                                    @foreach ($documents as $key => $document)
                                         <tr Lab="row" class="odd">
                                             <td class="sorting_1 text-center">{{ $loop->index + 1 }}</td>
-                                            <td class="sorting_1 text-capitalize">{{ $lab->name }}</td>
-                                            <td class="sorting_1 text-capitalize">{{ $lab->advice }}</td>
-                                            <td class="sorting_1 text-capitalize">{{ $lab->price }}</td>
-                                            <td class="sorting_1 text-capitalize">{{ $lab->commission }}</td>
-                                            <td class="sorting_1 text-capitalize">{!! $lab->template !!}</td>
+                                            <td class="sorting_1 text-center">{{ $document->id }}</td>
+                                            <td class="sorting_1 text-capitalize">{{ $document->test->name }}</td>
+                                            <td class="sorting_1 text-capitalize">{{ $document->patient->name }}</td>
+                                            <td class="sorting_1 text-capitalize">{{ $document->technician->name }}</td>
+                                            <td class="sorting_1 text-capitalize">{{ $document->verifiedDoctor->name }}</td>
                                             <td>
                                                 <div class="btn-group d-flex justify-content-center">
-                                                    <a href="{{ route('lab.show', $lab->id) }}"
+                                                    <a href="{{ route('lab.show', $document->id) }}"
                                                         class="btn btn-sm btn-outline-info mr-3 data-toggle="
                                                         data-placement="top" title="View"><i class="fa fa-eye"></i></a>
-                                                    <a href="{{ route('lab.edit', $lab->id) }}"
+                                                    <a href="{{ route('lab.edit', $document->id) }}"
                                                         class="btn btn-sm btn-outline-warning mr-3"><i
                                                             class="fa fa-edit"></i></a>
-                                                    <a href="{{ route('lab_soft_delete', $lab->id) }}"
+                                                    <a href="{{ route('lab_soft_delete', $document->id) }}"
                                                         class="btn btn-sm btn-outline-danger"><i
                                                             class="fa fa-trash"></i></a>
                                                 </div>
@@ -130,7 +130,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-7">
-                            {{ $labs->links() }}
+                            {{ $documents->links() }}
                         </div>
                     </div>
                 </div>

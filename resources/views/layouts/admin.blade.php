@@ -160,11 +160,57 @@
                     </div>
                 </div>
             </li>
+            <!-- Nav Item - Prescription -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePrescription"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-prescription"></i>
+                    <span>Prescription</span>
+                </a>
+                <div id="collapsePrescription" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item text-capitalize" href="{{route('prescription.index')}}">Prescription list</a>
+                        <a class="collapse-item text-capitalize" href="{{route('prescription.create')}}">Make new Prescription</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Lab Test -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLab"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-flask"></i>
+                    <span>Lab Tests</span>
+                </a>
+                <div id="collapseLab" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item text-capitalize" href="{{route('lab.index')}}">Lab Test list</a>
+                        <a class="collapse-item text-capitalize" href="#">Appointments</a>
+                        <a class="collapse-item text-capitalize" href="{{route('allLabReports')}}">All Lab report</a>
+                        <a class="collapse-item text-capitalize" href="{{route('makeLabReport')}}">Make Lab Report</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Medicine -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMedicine"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-pills"></i>
+                    <span>Medicine</span>
+                </a>
+                <div id="collapseMedicine" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item text-capitalize" href="{{route('medicine.index')}}">Medicine list</a>
+                        <a class="collapse-item text-capitalize" href="#">Appointments</a>
+                        <a class="collapse-item text-capitalize" href="{{route('allLabReports')}}">All Lab report</a>
+                        <a class="collapse-item text-capitalize" href="{{route('makeLabReport')}}">Make Lab Report</a>
+                    </div>
+                </div>
+            </li>
             <!-- Nav Item - Suppliers -->
             <li class="nav-item">
-                <a class="nav-link" href="{{route('supplier.index')}}">
+                <a class="nav-link" href="{{route('company.index')}}">
                     <i class="fa fa-industry"></i>
-                    <span>Suppliers</span></a>
+                    <span>Company</span></a>
             </li>
 
             <!-- Divider -->

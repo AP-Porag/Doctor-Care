@@ -15,7 +15,15 @@ class CreatePrescribedMedicinesTable extends Migration
     {
         Schema::create('prescribed_medicines', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('prescription_id');
+            $table->foreignId('medicine_id');
+            $table->foreignId('category_id');
+            $table->string('dosage');
+            $table->string('frequency');
+            $table->string('days');
+            $table->string('instruction');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

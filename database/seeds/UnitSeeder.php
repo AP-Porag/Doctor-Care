@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Unit;
 
 class UnitSeeder extends Seeder
 {
@@ -11,6 +12,11 @@ class UnitSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Unit::create([
+            'name'=>'1pc'
+        ]);
+        Unit::create([
+            'name'=>'1btl'
+        ]);
     }
 }

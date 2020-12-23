@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('module')
-    Supplier
+    Company
 @endsection
 
 @section('before-path')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('title')
-    Supplier-List
+    Company-List
 @endsection
 
 @section('breadcumb')
@@ -29,15 +29,15 @@
 
 @section('content')
 
-    {{-- trashed Supplier--}}
+    {{-- trashed Company--}}
 
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-danger">In-Active @yield('module')</h6>
             <div class="d-flex justify-content-between">
-                <a href="{{ route('supplier.create') }}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i
+                <a href="{{ route('company.create') }}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i
                         class="fa fa-plus-circle"></i> Add new @yield('module')</a>
-                <a href="{{ route('supplier.index') }}" class="btn btn-sm btn-outline-success text-capitalize"><i
+                <a href="{{ route('company.index') }}" class="btn btn-sm btn-outline-success text-capitalize"><i
                         class="fa fa-handshake mr-1"></i>Active @yield('module')</a>
             </div>
         </div>
@@ -93,29 +93,29 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($trashed_suppliers as $key => $supplier)
+                                    @foreach ($trashed_companies as $key => $company)
                                         <tr role="row" class="odd">
-                                            <td class="sorting_1 text-center">{{ $trashed_suppliers->firstItem() + $key }}
+                                            <td class="sorting_1 text-center">{{ $trashed_companies->firstItem() + $key }}
                                             </td>
-                                            <td class="sorting_1">{{ $supplier->name }}</td>
-                                            <td>{{ $supplier->sr_name }}</td>
-                                            <td>{{ $supplier->phone }}</td>
+                                            <td class="sorting_1">{{ $company->name }}</td>
+                                            <td>{{ $company->sr_name }}</td>
+                                            <td>{{ $company->phone }}</td>
                                             <td class="text-center d-flex justify-content-center">
                                                 <div class="text-center" style="max-width: 50px;">
-                                                    <img src="{{ asset($supplier->logo) }}" alt="{{ $supplier->name }}"
+                                                    <img src="{{ asset($company->logo) }}" alt="{{ $company->name }}"
                                                         class="img-circle img-fluid">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="btn-group d-flex justify-content-center">
-                                                    <a href="{{ route('restore', $supplier->id) }}"
+                                                    <a href="{{ route('restore', $company->id) }}"
                                                         class="btn btn-sm btn-outline-success mr-3"><i
                                                             class="fab fa-creative-commons-share"></i></a>
-                                                    <a href="{{ route('forceDelete', $supplier->id) }}"
+                                                    <a href="{{ route('forceDelete', $company->id) }}"
                                                         class="btn btn-sm btn-outline-danger mr-3"><i
                                                             class="fas fa-window-close"></i></a>
                                                     {{-- <form
-                                                        action="{{ route('supplier_hard_delete', $supplier->id) }}"
+                                                        action="{{ route('Company_hard_delete', $company->id) }}"
                                                         method="get">--}}
                                                         {{--
                                                         @csrf--}}
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-7">
-                            {{ $trashed_suppliers->links() }}
+                            {{ $trashed_companies->links() }}
                         </div>
                     </div>
                 </div>

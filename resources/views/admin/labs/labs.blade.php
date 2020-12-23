@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('module')
-    Appointment
+    Lab
 @endsection
 
 @section('before-path')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('title')
-    Appointment-List
+    Lab-List
 @endsection
 
 @section('breadcumb')
@@ -32,9 +32,9 @@
         <div class="card-header py-3 d-flex justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">@yield('title')</h6>
             <div class="d-flex justify-content-between">
-                <a href="{{ route('appointment.create') }}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i
+                <a href="{{ route('lab.create') }}" class="btn btn-sm btn-outline-primary text-capitalize mr-3"><i
                         class="fa fa-plus-circle"></i> Add new @yield('module')</a>
-                <a href="{{ route('inactive_appointments') }}" class="btn btn-sm btn-outline-danger text-capitalize"><i
+                <a href="{{ route('inactive_labs') }}" class="btn btn-sm btn-outline-danger text-capitalize"><i
                         class="fa fa-ban"></i> In-Active @yield('module')</a>
             </div>
         </div>
@@ -61,41 +61,33 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <table class="table table-bordered dataTable table-striped table-hover" id="dataTable"
-                                width="100%" cellspacing="0" Appointment="grid" aria-describedby="dataTable_info">
+                            <table class="table table-bordered dataTable" id="dataTable"
+                                width="100%" cellspacing="0" Lab="grid" aria-describedby="dataTable_info">
                                 <thead>
-                                    <tr Appointment="row">
+                                    <tr Lab="row">
                                         <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
                                             rowspan="1" colspan="1" aria-sort="ascending"
                                             aria-label="Name: activate to sort column descending">Sl
                                         </th>
                                         <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
                                             rowspan="1" colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending">ID
+                                            aria-label="Name: activate to sort column descending">Name
                                         </th>
                                         <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
                                             rowspan="1" colspan="1" aria-sort="ascending"
-                                            aria-label="Name: activate to sort column descending">Patient Name
+                                            aria-label="Name: activate to sort column descending">advice
+                                        </th>
+                                        <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
+                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                            aria-label="Name: activate to sort column descending">Price
+                                        </th>
+                                        <th class="sorting_asc text-center" tabindex="0" aria-controls="dataTable"
+                                            rowspan="1" colspan="1" aria-sort="ascending"
+                                            aria-label="Name: activate to sort column descending">commission
                                         </th>
                                         <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
                                             colspan="1" aria-label="Position: activate to sort column ascending">
-                                            Contact
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Office: activate to sort column ascending">
-                                            Doctor
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Office: activate to sort column ascending">
-                                            Date-Time
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Office: activate to sort column ascending">
-                                            Remarks
-                                        </th>
-                                        <th class="sorting text-center" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                            colspan="1" aria-label="Office: activate to sort column ascending">
-                                            Status
+                                            Template
                                         </th>
                                         <th rowspan="1" colspan="1" class="text-center">Action
                                         </th>
@@ -103,33 +95,23 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($appointments as $key => $appointment)
-                                        <tr Appointment="row" class="odd">
+                                    @foreach ($labs as $key => $lab)
+                                        <tr Lab="row" class="odd">
                                             <td class="sorting_1 text-center">{{ $loop->index + 1 }}</td>
-                                            <td class="sorting_1 text-capitalize">{{ $appointment->id }}</td>
-                                            <td class="sorting_1 text-capitalize">{{ $appointment->name }}</td>
-                                            <td class="sorting_1 text-capitalize">{{ $appointment->contact }}</td>
-                                            <td class="sorting_1 text-capitalize">
-                                                {{ $appointment->doctor->name }}
-                                            </td>
-                                            <td class="sorting_1 text-capitalize">{{ $appointment->date }}</td>
-                                            <td class="sorting_1 text-capitalize">{{ $appointment->remarks }}</td>
-                                            <td class="sorting_1 text-capitalize">{{ $appointment->status->name }}</td>
+                                            <td class="sorting_1 text-capitalize">{{ $lab->name }}</td>
+                                            <td class="sorting_1 text-capitalize">{{ $lab->advice }}</td>
+                                            <td class="sorting_1 text-capitalize">{{ $lab->price }}</td>
+                                            <td class="sorting_1 text-capitalize">{{ $lab->commission }}</td>
+                                            <td class="sorting_1 text-capitalize">{!! $lab->template !!}</td>
                                             <td>
                                                 <div class="btn-group d-flex justify-content-center">
-                                                    <a href="{{ route('appointment.show', $appointment->id) }}"
-                                                        class="btn btn-sm btn-outline-info mr-3 data-toggle=" tooltip"
+                                                    <a href="{{ route('lab.show', $lab->id) }}"
+                                                        class="btn btn-sm btn-outline-info mr-3 data-toggle="
                                                         data-placement="top" title="View"><i class="fa fa-eye"></i></a>
-                                                    <a href="{{ route('appointment_paymentView', $appointment->id) }}"
-                                                        class="btn btn-sm btn-outline-dark mr-3"><i
-                                                            class="fa fa-money-check-alt"></i></a>
-                                                    <a href="{{ route('confirmation_appointment', $appointment->id) }}"
-                                                        class="btn btn-sm btn-outline-success mr-3"><i
-                                                            class="fa fa-clipboard-check"></i></a>
-                                                    <a href="{{ route('appointment.edit', $appointment->id) }}"
+                                                    <a href="{{ route('lab.edit', $lab->id) }}"
                                                         class="btn btn-sm btn-outline-warning mr-3"><i
                                                             class="fa fa-edit"></i></a>
-                                                    <a href="{{ route('appointment_soft_delete', $appointment->id) }}"
+                                                    <a href="{{ route('lab_soft_delete', $lab->id) }}"
                                                         class="btn btn-sm btn-outline-danger"><i
                                                             class="fa fa-trash"></i></a>
                                                 </div>
@@ -142,13 +124,13 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-5">
-                            <div class="dataTables_info" id="dataTable_info" Appointment="status" aria-live="polite">Showing
+                            <div class="dataTables_info" id="dataTable_info" Lab="status" aria-live="polite">Showing
                                 51
                                 to 57 of 57 entries
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-7">
-                            {{ $appointments->links() }}
+                            {{ $labs->links() }}
                         </div>
                     </div>
                 </div>

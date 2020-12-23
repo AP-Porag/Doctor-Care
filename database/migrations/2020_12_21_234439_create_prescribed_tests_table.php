@@ -15,7 +15,10 @@ class CreatePrescribedTestsTable extends Migration
     {
         Schema::create('prescribed_tests', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('prescription_id');
+            $table->foreignId('lab_id');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

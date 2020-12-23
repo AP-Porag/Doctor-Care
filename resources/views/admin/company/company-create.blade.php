@@ -1,22 +1,22 @@
 @extends('layouts.admin')
 
 @section('module')
-    Supplier
+    Company
 @endsection
 
 @section('before-path')
-    Supplier-List
+    Company-List
 @endsection
 
 @section('title')
-    Add new Supplier
+    Add new Company
 @endsection
 
 @section('breadcumb')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item text-capitalize"><a href="{{route('home')}}">Dashboard</a></li>
-            <li class="breadcrumb-item text-capitalize"><a href="{{route('supplier.index')}}">@yield('before-path')</a></li>
+            <li class="breadcrumb-item text-capitalize"><a href="{{route('company.index')}}">@yield('before-path')</a></li>
             <li class="breadcrumb-item active text-capitalize" aria-current="page">@yield('title')</li>
         </ol>
     </nav>
@@ -30,17 +30,17 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-end">
-            <a href="{{route('supplier.index')}}" class="btn btn-sm btn-outline-primary"><i class="fa fa-list"></i>@yield('before-path')</a>
+            <a href="{{route('company.index')}}" class="btn btn-sm btn-outline-primary"><i class="fa fa-list"></i>@yield('before-path')</a>
         </div>
         <div class="card-body">
             <div class="form">
-                <form action="{{route('supplier.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('company.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name" class="text-capitalize">Name</label>
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Enter Supplier name" value="{{ old('name') }}">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Enter Company name" value="{{ old('name') }}">
                                 @error('name')
                                 <div class="alert alert-danger alert-dismissible fade show mt-1">
                                     <strong>Warning!  </strong>{{$message}}
@@ -52,7 +52,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone" class="text-capitalize">phone</label>
-                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter supplier phone" value="{{ old('phone') }}">
+                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Enter Company phone" value="{{ old('phone') }}">
                                 @error('phone')
                                 <div class="alert alert-danger alert-dismissible fade show mt-1">
                                     <strong>Warning!  </strong>{{$message}}
@@ -66,7 +66,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="sr_name" class="text-capitalize">Representative Name</label>
-                                <input type="text" name="sr_name" class="form-control" id="sr_name" placeholder="Enter Supplier representative Name" {{ old('sr_name') }}>
+                                <input type="text" name="sr_name" class="form-control" id="sr_name" placeholder="Enter Company representative Name" {{ old('sr_name') }}>
                                 @error('sr_name')
                                 <div class="alert alert-danger alert-dismissible fade show mt-1">
                                     <strong>Warning!  </strong>{{$message}}
@@ -89,7 +89,7 @@
                                             <div class="input-group">
                                                 <div class="custom-file">
                                                     <input type="file" name="logo" class="form-control" id="logo"
-                                                           placeholder="Enter supplier logo" @change="fileChange">
+                                                           placeholder="Enter Company logo" @change="fileChange">
                                                     @error('logo')
                                                     <div class="alert alert-danger alert-dismissible fade show mt-1">
                                                         <strong>Warning! </strong>{{$message}}
