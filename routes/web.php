@@ -85,10 +85,36 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/appointment/add/store-patient', 'Admin\Appointment\AppointmentsController@storePatient')->name('storePatient');
     Route::get('/appointment/appointments/{id}', 'Admin\Appointment\AppointmentsController@appointments')->name('appointments');
 
-    //Supplier route start
-    Route::resource('supplier', 'Admin\Supplier\SupplierController');
-    Route::get('/supplier/soft-delete/{id}', 'Admin\Supplier\SupplierController@softDelete')->name('supplier_soft_delete');
-    Route::get('/supplier/restore/{id}', 'Admin\Supplier\SupplierController@restore')->name('restore');
-    Route::get('/supplier/force-delete/{id}', 'Admin\Supplier\SupplierController@forceDelete')->name('forceDelete');
-    Route::get('/supplier/inactive/suppliers', 'Admin\Supplier\SupplierController@inactive')->name('inactive');
+    //Medicine Route start
+    Route::resource('prescription', 'Admin\Prescription\PrescriptionController');
+    Route::get('/prescription/soft-delete/{id}', 'Admin\Prescription\PrescriptionController@softDelete')->name('prescription_soft_delete');
+    Route::get('/prescription/restore/{id}', 'Admin\Prescription\PrescriptionController@restore')->name('restore_prescription');
+    Route::get('/prescription/force-delete/{id}', 'Admin\Prescription\PrescriptionController@forceDelete')->name('forceDelete_prescription');
+    Route::get('/prescription/inactive/prescription', 'Admin\Prescription\PrescriptionController@inactive')->name('inactive_prescription');
+
+    //Lab test route start
+    Route::resource('lab', 'Admin\Lab\LabController');
+    Route::get('/lab/soft-delete/{id}', 'Admin\Lab\LabController@softDelete')->name('lab_soft_delete');
+    Route::get('/lab/restore/{id}', 'Admin\Lab\LabController@restore')->name('lab_patient');
+    Route::get('/lab/force-delete/{id}', 'Admin\Lab\LabController@forceDelete')->name('forceDelete_lab');
+    Route::get('/lab/inactive/patients', 'Admin\Lab\LabController@inactive')->name('inactive_labs');
+    Route::get('/lab/make-report/view', 'Admin\Lab\LabController@makeLabReport')->name('makeLabReport');
+    Route::get('/lab/make-report/findTemplate', 'Admin\Lab\LabController@findTemplate')->name('findTemplate');
+    Route::post('/lab/make-report/saveLabReport', 'Admin\Lab\LabController@saveLabReport')->name('saveLabReport');
+    Route::get('/lab/all-report/view', 'Admin\Lab\LabController@allLabReports')->name('allLabReports');
+
+    //Medicine Route start
+    Route::resource('medicine', 'Admin\Medicine\MedicineController');
+    Route::get('/medicine/soft-delete/{id}', 'Admin\Medicine\MedicineController@softDelete')->name('medicine_soft_delete');
+    Route::get('/medicine/restore/{id}', 'Admin\Medicine\MedicineController@restore')->name('restore_medicine');
+    Route::get('/medicine/force-delete/{id}', 'Admin\Medicine\MedicineController@forceDelete')->name('forceDelete_medicine');
+    Route::get('/medicine/inactive/permission', 'Admin\Medicine\MedicineController@inactive')->name('inactive_medicine');
+    Route::post('/medicine/generic/store', 'Admin\Medicine\MedicineController@store_generic')->name('store_generic');
+
+    //Company route start
+    Route::resource('company', 'Admin\Company\CompanyController');
+    Route::get('/company/soft-delete/{id}', 'Admin\Company\CompanyController@softDelete')->name('company_soft_delete');
+    Route::get('/company/restore/{id}', 'Admin\Company\CompanyController@restore')->name('restore');
+    Route::get('/company/force-delete/{id}', 'Admin\Company\CompanyController@forceDelete')->name('forceDelete');
+    Route::get('/company/inactive/companies', 'Admin\Company\CompanyController@inactive')->name('inactive');
 });
