@@ -353,7 +353,7 @@
 @endsection
 
 @section('script')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>--}}
     <script>
         $('#preview').attr('src', 'http://127.0.0.1:8000/storage/no-image/upload-image.png');
 

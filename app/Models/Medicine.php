@@ -20,4 +20,18 @@ class Medicine extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function purchaseRequest()
+    {
+        return $this->hasMany(PurchaseRequest::class,'medicine_id');
+    }
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class);
+    }
+    public function sells()
+    {
+        return $this->hasMany(SoldMedicine::class);
+    }
+
 }
