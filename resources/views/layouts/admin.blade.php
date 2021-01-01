@@ -206,6 +206,22 @@
                     </div>
                 </div>
             </li>
+            <!-- Nav Item - Pharmacy -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePharmacy"
+                   aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fa fa-clinic-medical"></i>
+                    <span>Pharmacy</span>
+                </a>
+                <div id="collapsePharmacy" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item text-capitalize" href="{{route('sale.index')}}">Sales list</a>
+                        <a class="collapse-item text-capitalize" href="{{route('sale.create')}}">Add new Sale</a>
+                        <a class="collapse-item text-capitalize" href="{{route('stock')}}">Medicine Stock</a>
+                        <a class="collapse-item text-capitalize" href="{{route('purchaseRequestView')}}">Purchase Request</a>
+                    </div>
+                </div>
+            </li>
             <!-- Nav Item - Suppliers -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('company.index')}}">

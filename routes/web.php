@@ -85,7 +85,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::post('/appointment/add/store-patient', 'Admin\Appointment\AppointmentsController@storePatient')->name('storePatient');
     Route::get('/appointment/appointments/{id}', 'Admin\Appointment\AppointmentsController@appointments')->name('appointments');
 
-    //Medicine Route start
+    //Prescription Route start
     Route::resource('prescription', 'Admin\Prescription\PrescriptionController');
     Route::get('/prescription/soft-delete/{id}', 'Admin\Prescription\PrescriptionController@softDelete')->name('prescription_soft_delete');
     Route::get('/prescription/restore/{id}', 'Admin\Prescription\PrescriptionController@restore')->name('restore_prescription');
@@ -110,6 +110,26 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/medicine/force-delete/{id}', 'Admin\Medicine\MedicineController@forceDelete')->name('forceDelete_medicine');
     Route::get('/medicine/inactive/permission', 'Admin\Medicine\MedicineController@inactive')->name('inactive_medicine');
     Route::post('/medicine/generic/store', 'Admin\Medicine\MedicineController@store_generic')->name('store_generic');
+
+    //Pharmacy Route start
+    Route::resource('sale', 'Admin\Sale\SaleController');
+    Route::get('/sale/soft-delete/{id}', 'Admin\Sale\SaleController@softDelete')->name('sale_soft_delete');
+    Route::get('/sale/restore/{id}', 'Admin\Sale\SaleController@restore')->name('restore_sale');
+    Route::get('/sale/force-delete/{id}', 'Admin\Sale\SaleController@forceDelete')->name('forceDelete_sale');
+    Route::get('/sale/inactive/permission', 'Admin\Sale\SaleController@inactive')->name('inactive_sale');
+    Route::get('/sale/medicine/search', 'Admin\Sale\SaleController@search')->name('search_medicine');
+    Route::get('/sale/medicine/stock', 'Admin\Sale\SaleController@stock')->name('stock');
+
+    //Purchase Route start
+    Route::resource('purchase', 'Admin\Purchase\PurchaseController');
+    Route::get('/purchase/request/{id}', 'Admin\Purchase\PurchaseController@purchaseRequest')->name('purchaseRequest');
+    Route::get('/purchase/purchaseRequest/view', 'Admin\Purchase\PurchaseController@purchaseRequestView')->name('purchaseRequestView');
+    Route::post('/purchase/medicine/createView', 'Admin\Purchase\PurchaseController@createView')->name('pr_createView');
+    Route::get('/purchase/force-delete/{id}', 'Admin\Purchase\PurchaseController@purchaseRequestForceDelete')->name('purchaseRequestForceDelete');
+
+    //Purchase Route start
+    Route::resource('stock', 'Admin\Stock\StockController');
+    Route::post('/stock/add/stock', 'Admin\Stock\StockController@addStock')->name('addStock');
 
     //Company route start
     Route::resource('company', 'Admin\Company\CompanyController');

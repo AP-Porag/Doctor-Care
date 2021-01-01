@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Type;
+use App\Models\Method;
 use Illuminate\Database\Seeder;
 
 class PaymentTypeSeeder extends Seeder
@@ -23,6 +24,15 @@ class PaymentTypeSeeder extends Seeder
         ]);
         Type::create([
             'name'=>'free'
+        ]);
+        Method::create([
+            'name'=>'cash'
+        ]);
+        Method::create([
+            'name'=>'check'
+        ]);
+        Method::create([
+            'name'=>'card'
         ]);
     }
 }

@@ -259,6 +259,11 @@
 
                     }
                 });
+
+                $(document).on('click', '.delete', function(){
+                    var product_id = $(this).attr("id");
+
+                });
             });
         });
 
