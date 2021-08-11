@@ -38,12 +38,16 @@
 /*------------------------------------------------------------------
     IMPORT FILES
 -------------------------------------------------------------------*/
-
-@import url(css/animate.css);
-@import url(css/flaticon.css);
-@import url(css/prettyPhoto.css);
-@import url(css/owl.carousel.css);
-@import url(css/font-awesome.min.css);
+@import "animate.css";
+@import "flaticon.css";
+@import "prettyPhoto.css";
+@import "owl.carousel.css";
+@import "font-awesome.min.css";
+/*@import url(css/animate.css);*/
+/*@import url(css/flaticon.css);*/
+/*@import url(css/prettyPhoto.css);*/
+/*@import url(css/owl.carousel.css);*/
+/*@import url(css/font-awesome.min.css);*/
 
 /*------------------------------------------------------------------
     SKELETON
@@ -57,7 +61,7 @@ body {
 }
 
 body.demos .section {
-    background: url(images/bg.png) repeat top center #f2f3f5;
+    background: url("public/frontend/images/bg.png") repeat top center #f2f3f5;
 }
 
 body.demos .section-title img {
@@ -1037,7 +1041,7 @@ li.social-links a {
     -moz-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
-    opacity: 1;
+    opacity: 0;
 }
 
 .effect-1:after {
@@ -1052,7 +1056,7 @@ li.social-links a {
     -moz-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
-    opacity: 1;
+    opacity: 0;
 }
 
 
@@ -1244,7 +1248,7 @@ hr.invis1 {
     width: 100%;
     height: 100%;
     position: relative;
-    background: url("uploads/code.jpg") no-repeat;
+    background: url("public/frontend/uploads/code.jpg") no-repeat;
 }
 
 .design-wrapper {
@@ -1265,7 +1269,7 @@ hr.invis1 {
     position: relative;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    background: url("uploads/design.jpg") no-repeat;
+    background: url("public/frontend/uploads/design.jpg") no-repeat;
 }
 
 
@@ -1797,7 +1801,7 @@ select.mobile-device {
 }
 
 #contact {
-    background: url(images/bg.png) no-repeat center center #fff;
+    background: url(public/frontend/images/bg.png) no-repeat center center #fff;
 }
 
 
@@ -1828,7 +1832,6 @@ select.mobile-device {
     font-weight: 400;
     font-size: 20px;
     text-transform: capitalize;
-    line-height: !important;
 }
 
 .footer {
@@ -2063,7 +2066,7 @@ select.mobile-device {
     color: #999 !important;
     margin: 0 !important;
     padding: 0 !important;
-    line-height: 1 !important:
+    line-height: 1 !important;
 }
 
 .stat-wrap p {
@@ -2072,7 +2075,7 @@ select.mobile-device {
     margin: 0;
     font-weight: 300;
     padding: 4px 0 0;
-    line-height: 1 !important:
+    line-height: 1 !important;
 }
 
 #preloader {
