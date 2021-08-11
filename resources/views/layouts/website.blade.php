@@ -19,7 +19,7 @@
 {{--    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap4.min.css')}}">--}}
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.min.css')}}">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="{{asset('frontend/style.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <!-- Colors CSS -->
     <link rel="stylesheet" href="{{asset('frontend/css/colors.css')}}">
     <!-- ALL VERSION CSS -->
@@ -42,36 +42,39 @@
 <header>
     <div class="header-top wow fadeIn">
         <div class="container">
-            <a class="navbar-brand" href="{{route('website')}}"><img src="{{asset('frontend/images/logo.png')}}"
-                                                                     alt="image"></a>
-            <div class="right-header">
-                <div class="header-info">
-                    <div class="info-inner">
-                        <span class="icontop"><img src="{{asset('frontend/images/phone-icon.png')}}" alt="#"></span>
-                        <span class="iconcont"><a href="tel:800 123 456">800 123 456</a></span>
-                    </div>
-                    <div class="info-inner">
-                        <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                        <span class="iconcont"><a data-scroll
-                                                  href="mailto:info@yoursite.com">info@Doctor-Care.com</a></span>
-                    </div>
-                    <div class="info-inner">
-                        <span class="icontop"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
-                        <span class="iconcont"><a data-scroll href="#">Daily: 7:00am - 8:00pm</a></span>
-                    </div>
-                    <div class="info-inner">
-                        @guest
-                            <a href="{{route('login')}}" data-scroll
-                               class="btn btn-light btn-radius btn-brd grd1 effect-1"
-                               style="margin-right: 5px;">Log in</a>
-                            <a href="{{route('register')}}" data-scroll
-                               class="btn btn-light btn-radius btn-brd grd1 effect-1"
-                               style="margin-right: 10px; margin-left: 5px;">Sign Up</a>
-                        @endguest
-                        @auth
-                            <a href="{{ route('home') }}" data-scroll
-                               class="btn btn-light btn-radius btn-brd grd1 effect-1">My
-                                Account</a>
+            <div class="row">
+                <div class="col-md-2">
+                    <a class="navbar-brand" href="{{route('website')}}"><img src="{{asset('frontend/images/logo.png')}}" class="img-fluid"
+                                                                             alt="image"></a>
+                </div>
+                <div class="right-header col-md-10">
+                    <div class="header-info">
+                        <div class="info-inner">
+                            <span class="icontop"><img src="{{asset('frontend/images/phone-icon.png')}}" alt="#"></span>
+                            <span class="iconcont"><a href="tel:800 123 456">800 123 456</a></span>
+                        </div>
+                        <div class="info-inner">
+                            <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            <span class="iconcont"><a data-scroll
+                                                      href="mailto:info@yoursite.com">info@Doctor-Care.com</a></span>
+                        </div>
+                        <div class="info-inner">
+                            <span class="icontop"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                            <span class="iconcont"><a data-scroll href="#">Daily: 7:00am - 8:00pm</a></span>
+                        </div>
+                        <div class="info-inner">
+                            @guest
+                                <a href="{{route('login')}}" data-scroll
+                                   class="btn btn-light btn-radius btn-brd grd1 effect-1"
+                                   style="margin-right: 5px;">Log in</a>
+                                <a href="{{route('register')}}" data-scroll
+                                   class="btn btn-light btn-radius btn-brd grd1 effect-1"
+                                   style="margin-right: 10px; margin-left: 5px;">Sign Up</a>
+                            @endguest
+                            @auth
+                                <a href="{{ route('home') }}" data-scroll
+                                   class="btn btn-light btn-radius btn-brd grd1 effect-1">My
+                                    Account</a>
 
                                 <a class="btn btn-light btn-radius btn-brd grd1 effect-1" href="{{ route('logout') }}" data-scroll
                                    onclick="event.preventDefault();
@@ -82,7 +85,8 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                        @endauth
+                            @endauth
+                        </div>
                     </div>
                 </div>
             </div>
