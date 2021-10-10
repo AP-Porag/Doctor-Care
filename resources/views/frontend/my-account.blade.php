@@ -4,20 +4,6 @@
     My Account
 @endsection
 
-@section('before-path')
-
-@endsection
-
-@section('breadcrumb-name')
-
-@endsection
-
-@section('style')
-    <style>
-
-    </style>
-@endsection
-
 @section('content')
     <div class="content">
         <div id="home" class="parallax first-section wow fadeIn animated" data-stellar-background-ratio="0.4" style="background-image: url(&quot;http://127.0.0.1:8000/frontend/images/slider-bg.png&quot;); visibility: visible; background-position: 0px 300px;">
@@ -37,29 +23,28 @@
             <!-- end container -->
         </div>
         <!-- end section -->
-        <div id="getintouch" class="section wb wow fadeIn" style="padding-bottom:0;">
+        <div id="getintouch" class="section wb wow fadeIn" style="padding-bottom:0;margin-bottom: 50px;">
             <div class="container">
                 <div class="heading">
                     <span class="icon-logo"><img src="{{asset('frontend/images/icon-logo.png')}}" alt="#"></span>
-                    <h2>My Account</h2>
+                    <h3>Hello! {{$user->name}}'s, See all your activity</h3>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header bg-primary">
-                                My Account
+                            <div class="bg-primary">
+                                <h3 class="text-white all_appointment_text">All Appointment</h3>
                             </div>
-                            <div class="">
-                                <ul class="list-group border-0">
-                                    <li class="list-group-item"><a href="#">Cras justo odio</a></li>
-                                    <li class="list-group-item"><a href="#">Dapibus ac facilisis in</a></li>
-                                    <li class="list-group-item"><a href="#">Morbi leo risus</a></li>
-                                    <li class="list-group-item"><a href="#">Porta ac consectetur ac</a></li>
-                                    <li class="list-group-item"><a href="#">Vestibulum at eros</a></li>
-                                </ul>
-                            </div>
+                            <ul class="list-group">
+                                @foreach($appointments as $appointment)
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Doctor Name : {{$appointment->doctor->name}}
+                                        <span class="badge badge-primary badge-pill">{{$appointment->date}}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                     <div class="col-md-8">

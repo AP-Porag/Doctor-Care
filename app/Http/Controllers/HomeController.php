@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +31,9 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         if ($user->hasRole('patient')) {
-            return view('frontend.my-account');
+
+            $appointments = Appointment::where('user_id',$user->id)->get();
+            return view('frontend.my-account',compact('appointments','user'));
             //return view('layouts.app');
         } else {
             return view('admin.index');

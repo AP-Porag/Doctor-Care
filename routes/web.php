@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 
 //front end rute start
-Route::get('/', function () {
-    return view('frontend.index');
-})->name('website');
+Route::get('/', 'IndexPageController@index')->name('website');
+Route::post('/taking-appointment', 'IndexPageController@takingAppointment')->name('taking-appointment');
 
 Auth::routes();
 // Auth::routes(['verify' => true]);

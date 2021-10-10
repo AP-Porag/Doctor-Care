@@ -56,7 +56,7 @@
                         <div class="info-inner">
                             <span class="icontop"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                             <span class="iconcont"><a data-scroll
-                                                      href="mailto:info@yoursite.com">info@Doctor-Care.com</a></span>
+                                                      href="mailto:info@yoursite.com">info@Life-Care.com</a></span>
                         </div>
                         <div class="info-inner">
                             <span class="icontop"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
@@ -185,7 +185,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="footer-text">
-                    <p>© 2018 Doctor-Care. All Rights Reserved.</p>
+                    <p>© 2018 Life-Care. All Rights Reserved.</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -212,6 +212,11 @@
 <!-- map -->
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUPWkb4Cjd7Wxo-T4uoUldFjoiUA1fJc&callback=myMap"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    @if(\Illuminate\Support\Facades\Session::has('success'))
+    toastr.success("{{\Illuminate\Support\Facades\Session::get('success')}}");
+    @endif
+</script>
 </body>
 </html>
