@@ -45,7 +45,7 @@
                 <a href="{{route('home')}}" class="sidebar-brand-icon">
                     <img src="{{asset('frontend/images/fevicon.ico.png')}}" alt="" class="img-fluid">
                 </a>
-                <div class="sidebar-brand-text mt-3"><a href="{{route('home')}}" class=""></a> Doctor-Care</div>
+                <div class="sidebar-brand-text mt-3"><a href="{{route('home')}}" class=""></a> Life-Care</div>
             </li>
 
             <!-- Divider -->
@@ -504,7 +504,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Doctor-Care  2020</span>
+                        <span>Copyright &copy; Life-Care  2020</span>
                     </div>
                 </div>
             </footer>
